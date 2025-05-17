@@ -1,8 +1,7 @@
 import { docs, meta } from "@/.source";
 import { createMDXSource } from "fumadocs-mdx";
 import { loader } from "fumadocs-core/source";
-import fs from "fs";
-import path from "path";
+import authors from "@/content/author.json";
 
 export const blog = loader({
   // i18n: {
@@ -54,10 +53,6 @@ export function getPostMetadata(post: blogType): postMetadataType {
   // Load author data from content/author.json
   let author: authorType | undefined;
   try {
-    const authorJsonPath = path.join(process.cwd(), "content", "author.json");
-    const authors: authorType[] = JSON.parse(
-      fs.readFileSync(authorJsonPath, "utf-8")
-    );
     author = authors.find((a) => a.nickname === post.data.author);
   } catch (error) {
     console.error(post.url, "Error loading author data:", error);
