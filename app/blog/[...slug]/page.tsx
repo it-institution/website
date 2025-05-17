@@ -10,6 +10,7 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 import { ImageZoom } from "fumadocs-ui/components/image-zoom";
 import { Callout } from "fumadocs-ui/components/callout";
 import { TOCItemType } from "fumadocs-core/server";
+import Image from "next/image";
 
 export async function generateStaticParams() {
   return blog.generateParams();
@@ -81,13 +82,23 @@ export default async function Page({
 
   return (
     <section className="mx-auto flex max-w-3xl flex-col gap-8 px-4 py-12">
+      <div className="flex flex-col gap-4">
+        <h1 className="text-3xl font-bold">{post.data.title}</h1>
+        <h3 className="text-muted-foreground text-sm">
+          {post.data.description}
+        </h3>
+
+        <div className="my-4 h-[0.5px] w-full bg-neutral-600" />
+      </div>
+
       <DocsBody>
         <div style={{ wordBreak: "break-word", overflowWrap: "break-word" }}>
           <MDX
             className="mdx"
             components={{
               ...defaultMdxComponents,
-              img: (props) => <ImageZoom {...props} />,
+              // img: (props) => <ImageZoom {...props} />,
+              img: (props) => <Image {...props} alt={props.alt} />,
               Tab,
               Tabs,
               Callout,
