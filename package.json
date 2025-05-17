@@ -17,6 +17,7 @@
     "@tailwindcss/postcss": "^4.1.7",
     "fumadocs-docgen": "^2.0.0",
     "fumadocs-mdx": "^11.6.4",
+    "fumadocs-ui": "^15.3.3",
     "next": "15.3.2",
     "nuqs": "^2.4.3",
     "react": "19.1.0",

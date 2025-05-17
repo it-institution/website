@@ -50,11 +50,10 @@ export default async function Page({
 }) {
   const { slug } = await params;
 
-  const locale = "ko";
-  setStaticParamsLocale(locale);
+  // const locale = "ko";
 
-  const post = blog.getPage(slug, locale);
-  const posts = blog.getPages(locale);
+  const post = blog.getPage(slug);
+  const posts = blog.getPages();
 
   posts.sort(
     (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()

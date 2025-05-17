@@ -8,30 +8,24 @@ import { postMetadataType } from "@/lib/source";
 // import { Badge } from "@/components/ui/badge";
 
 export function BlogList({
-  lang,
+  // lang,
   posts,
 }: {
-  lang: string;
+  // lang: string;
   posts: postMetadataType[];
 }) {
-  const [query] = useQueryState(
-    "q",
-    parseAsString.withDefault(lang == "en" ? "(en)" : "")
-  );
+  // const [query] = useQueryState(
+  //   "q",
+  //   parseAsString.withDefault(lang == "en" ? "(en)" : "")
+  // );
 
-  return <BlogListFallback posts={posts} query={query} />;
+  return <BlogListFallback posts={posts} />;
 }
 
-export function BlogListFallback({
-  posts,
-  query,
-}: {
-  posts: postMetadataType[];
-  query: string;
-}) {
-  const filteredPosts = posts.filter((post: postMetadataType) =>
-    post.title?.toLowerCase().includes(query.toLowerCase())
-  );
+export function BlogListFallback({ posts }: { posts: postMetadataType[] }) {
+  // FIXME
+  const filteredPosts = posts;
+
   const yearList = filteredPosts.reduce(
     (acc: Record<string, postMetadataType[]>, post) => {
       const year = formatYear(post.date);

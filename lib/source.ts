@@ -3,10 +3,10 @@ import { createMDXSource } from "fumadocs-mdx";
 import { loader } from "fumadocs-core/source";
 
 export const blog = loader({
-  i18n: {
-    defaultLanguage: "ko",
-    languages: ["ko", "en"],
-  },
+  // i18n: {
+  //   defaultLanguage: "ko",
+  //   languages: ["ko", "en"],
+  // },
   baseUrl: "/blog",
   source: createMDXSource(docs, meta),
 });

@@ -19,14 +19,14 @@ export default async function Page({
   const { q: query } = await loadSearchParams(searchParams);
 
   // TODO: FIXME
-  const locale = "ko";
+  // const locale = "ko";
 
-  const posts = getPostsMetadata(blog.getPages(locale));
+  const posts = getPostsMetadata(blog.getPages());
 
   return (
     <section>
-      <Suspense fallback={<BlogListFallback query={query} posts={posts} />}>
-        <BlogList posts={posts} lang={locale} />
+      <Suspense fallback={<BlogListFallback posts={posts} />}>
+        <BlogList posts={posts} />
       </Suspense>
     </section>
   );
