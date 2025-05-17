@@ -50,13 +50,20 @@ export async function getPostMetadata(
   }
 
   // https://api.github.com/users/{post.data.author}
-  const author: any = await fetch(
-    `https://api.github.com/users/${post.data.author}`
-  ).then((res) => res.json());
+  let author: any;
+  try {
+    const response = await fetch(`https://api.github.com/users/${post.data.author}`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch author data: ${response.status} ${response.statusText}`);
+    }
+    author = await response.json();
+  } catch (error) {
+    console.error(post.url, "Error fetching author data:", error);
+    return emptyData;
+  }
 
   if (!author) {
     console.error(post.url, "Author not found");
-
     return emptyData;
   }
 
