@@ -2,6 +2,7 @@
 title: "유용한 CISCO CONFIG 모음"
 date: 2025-05-17T00:00:00.000Z
 tags: ["test"]
+author: "IdiotonC"
 ---
 
 # CISCO

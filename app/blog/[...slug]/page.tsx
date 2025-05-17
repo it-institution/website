@@ -1,4 +1,4 @@
-import { blog } from "@/lib/source";
+import { blog, getPostMetadata } from "@/lib/source";
 
 import { notFound } from "next/navigation";
 import defaultMdxComponents from "fumadocs-ui/mdx";
@@ -63,6 +63,8 @@ export default async function Page({
 
   const MDX = post.data.body;
 
+  const postMetadata = await getPostMetadata(post);
+
   type PostWithNavigation = (typeof posts)[0] & {
     previous: (typeof posts)[0] | null;
     next: (typeof posts)[0] | null;
@@ -82,11 +84,33 @@ export default async function Page({
 
   return (
     <section className="mx-auto flex max-w-3xl flex-col gap-8 px-4 py-12">
+      <Link href="/blog" className="text-sm text-muted-foreground">
+        ← Back to blog
+      </Link>
+
       <div className="flex flex-col gap-4">
         <h1 className="text-3xl font-bold">{post.data.title}</h1>
         <h3 className="text-muted-foreground text-sm">
           {post.data.description}
         </h3>
+
+        <Link
+          href={postMetadata.author.githubUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex flex-row items-center gap-2"
+        >
+          <Image
+            src={postMetadata.author.avatarUrl}
+            alt={postMetadata.author.nickname}
+            width={32}
+            height={32}
+            className="rounded-full"
+          />
+          <p className="text-sm text-muted-foreground hover:text-primary">
+            {postMetadata.author.nickname}
+          </p>
+        </Link>
 
         <div className="my-4 h-[0.5px] w-full bg-neutral-600" />
       </div>

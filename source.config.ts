@@ -13,6 +13,7 @@ export const { docs, meta } = defineDocs({
   docs: {
     schema: frontmatterSchema.extend({
       draft: z.boolean().optional().default(false),
+      author: z.string().describe("Author of the post, github username"),
       date: z
         .string()
         .or(z.date())
