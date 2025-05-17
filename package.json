@@ -15,9 +15,13 @@
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.7",
+    "fumadocs-docgen": "^2.0.0",
+    "fumadocs-mdx": "^11.6.4",
     "next": "15.3.2",
+    "nuqs": "^2.4.3",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "zod": "^3.24.4"
   },
   "devDependencies": {
     "@opennextjs/cloudflare": "1.0.3",
@@ -38,6 +42,7 @@
     "deploy": "opennextjs-cloudflare build && wrangler deploy",
     "dev": "next dev",
     "lint": "next lint",
+    "postinstall": "fumadocs-mdx",
     "preview": "opennextjs-cloudflare build && wrangler dev",
     "start": "next start"
   }
