@@ -10,6 +10,7 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 import { ImageZoom } from "fumadocs-ui/components/image-zoom";
 import { Callout } from "fumadocs-ui/components/callout";
 import { TOCItemType } from "fumadocs-core/server";
+import Image from "next/image";
 
 export async function generateStaticParams() {
   return blog.generateParams();
@@ -96,7 +97,8 @@ export default async function Page({
             className="mdx"
             components={{
               ...defaultMdxComponents,
-              img: (props) => <ImageZoom {...props} />,
+              // img: (props) => <ImageZoom {...props} />,
+              img: (props) => <Image {...props} alt={props.alt} />,
               Tab,
               Tabs,
               Callout,
