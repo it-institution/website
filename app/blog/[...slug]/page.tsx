@@ -81,6 +81,13 @@ export default async function Page({
 
   return (
     <section className="mx-auto flex max-w-3xl flex-col gap-8 px-4 py-12">
+      <h1 className="text-3xl font-bold">{post.data.title}</h1>
+      <h3 className="text-muted-foreground mb-8 text-sm">
+        {post.data.description}
+      </h3>
+
+      <div className="my-4 h-[0.5px] w-full bg-neutral-600" />
+
       <DocsBody>
         <div style={{ wordBreak: "break-word", overflowWrap: "break-word" }}>
           <MDX
