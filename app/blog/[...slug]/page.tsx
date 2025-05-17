@@ -63,7 +63,7 @@ export default async function Page({
 
   const MDX = post.data.body;
 
-  const postMetadata = await getPostMetadata(post);
+  const postMetadata = getPostMetadata(post);
 
   type PostWithNavigation = (typeof posts)[0] & {
     previous: (typeof posts)[0] | null;

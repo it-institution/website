@@ -31,9 +31,7 @@ export type authorType = {
   avatarUrl: string;
 };
 
-export async function getPostMetadata(
-  post: blogType
-): Promise<postMetadataType> {
+export function getPostMetadata(post: blogType): postMetadataType {
   const emptyData = {
     url: "",
     title: "",
@@ -80,16 +78,12 @@ export async function getPostMetadata(
   };
 }
 
-export async function getPostsMetadata(
-  posts: blogListType
-): Promise<postMetadataType[]> {
-  return Promise.all(
-    posts
-      .sort((a, b) => {
-        return b.data.date.getTime() - a.data.date.getTime();
-      })
-      .map((post) => {
-        return getPostMetadata(post);
-      })
-  );
+export function getPostsMetadata(posts: blogListType): postMetadataType[] {
+  return posts
+    .sort((a, b) => {
+      return b.data.date.getTime() - a.data.date.getTime();
+    })
+    .map((post) => {
+      return getPostMetadata(post);
+    });
 }
