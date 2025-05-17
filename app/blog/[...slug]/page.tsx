@@ -9,7 +9,6 @@ import Link from "next/link";
 import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 import { ImageZoom } from "fumadocs-ui/components/image-zoom";
 import { Callout } from "fumadocs-ui/components/callout";
-import { setStaticParamsLocale } from "next-international/server";
 import { TOCItemType } from "fumadocs-core/server";
 
 export async function generateStaticParams() {
