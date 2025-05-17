@@ -52,9 +52,13 @@ export async function getPostMetadata(
   // https://api.github.com/users/{post.data.author}
   let author: any;
   try {
-    const response = await fetch(`https://api.github.com/users/${post.data.author}`);
+    const response = await fetch(
+      `https://api.github.com/users/${post.data.author}`
+    );
     if (!response.ok) {
-      throw new Error(`Failed to fetch author data: ${response.status} ${response.statusText}`);
+      throw new Error(
+        `Failed to fetch author data: ${response.status} ${response.statusText}`
+      );
     }
     author = await response.json();
   } catch (error) {
