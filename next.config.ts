@@ -49,6 +49,12 @@ const nextConfig: NextConfig = {
         port: "",
         pathname: "/**/*",
       },
+      {
+        protocol: "https",
+        hostname: "recipe1.ezmember.co.kr",
+        port: "",
+        pathname: "/**/*",
+      },
     ],
   },
 };

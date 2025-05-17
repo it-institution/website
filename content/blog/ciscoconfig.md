@@ -28,24 +28,24 @@ terminal length 0
 
 # CISCO 장비 단축키
 
-| Keystroke                          | Description                                                                 | 해석                                                           |
-|-----------------------------------|-----------------------------------------------------------------------------|----------------------------------------------------------------|
-| Tab                               | Completes a partial command name entry.                                    | 부분적으로 기입된 command 완성 → command 자동완성             |
-| Backspace                         | Erases the character to the left of the cursor.                            | 커서의 왼쪽부터 문자를 지움                                   |
-| Ctrl+D                            | Erases the character at the cursor.                                        | 커서 위치의 문자를 지움                                       |
-| Ctrl+K                            | Erases all characters from the cursor to the end of the command line.      | 커서부터 끝까지의 문자를 지움                                 |
-| Esc D                             | Erases all characters from the cursor to the end of the word.              | 커서부터 단어의 끝까지 지움 (한 단어씩 지울 수 있는 단축키)  |
-| Ctrl+U or Ctrl+X                  | Erases all characters from the cursor back to the beginning of the command line. | 커서에서부터 명령줄의 시작 부분까지 모든 문자를 지움  |
-| Ctrl+W                            | Erases the word to the left of the cursor.                                 | 커서 왼쪽의 단어를 지움                                       |
-| Ctrl+A                            | Moves the cursor to the beginning of the line.                             | 커맨드의 맨 처음으로 돌아감                                   |
-| Left Arrow or Ctrl+B              | Moves the cursor one character to the left.                                | 커서 왼쪽 문자로 한칸씩 이동                                  |
-| Esc B                             | Moves the cursor back one word to the left.                                | 커서 왼쪽에 있는 단어 앞으로 커서를 옮김                      |
-| Esc F                             | Moves the cursor forward one word to the right.                            | 커서 오른쪽에 있는 단어 뒤로 커서를 옮김                      |
-| Right Arrow or Ctrl+F            | Moves the cursor one character to the right.                               | 커서 오른쪽 문자로 한칸씩 이동                                |
-| Ctrl+E                            | Moves the cursor to the end of command line.                               | 커맨드의 끝 부분으로 커서 이동                                |
-| Up Arrow or Ctrl+P               | Recalls the previous command in the history buffer, beginning with the most recent command. | 히스토리 버퍼에서 가장 최근의 커맨드부터 커맨드를 불러옴 |
-| Down Arrow or Ctrl+N             | Goes to the next line in the history buffer.                               | 히스토리 버퍼에서 다음 줄로 이동                              |
-| Ctrl+R or Ctrl+I or Ctrl+L       | Redisplays the system prompt and command line after a console message is received | 콘솔 로그 메시지를 받거나 하여 프롬프트를 다시 불러옴     |
+| Keystroke                  | Description                                                                                 | 해석                                                        |
+| -------------------------- | ------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| Tab                        | Completes a partial command name entry.                                                     | 부분적으로 기입된 command 완성 → command 자동완성           |
+| Backspace                  | Erases the character to the left of the cursor.                                             | 커서의 왼쪽부터 문자를 지움                                 |
+| Ctrl+D                     | Erases the character at the cursor.                                                         | 커서 위치의 문자를 지움                                     |
+| Ctrl+K                     | Erases all characters from the cursor to the end of the command line.                       | 커서부터 끝까지의 문자를 지움                               |
+| Esc D                      | Erases all characters from the cursor to the end of the word.                               | 커서부터 단어의 끝까지 지움 (한 단어씩 지울 수 있는 단축키) |
+| Ctrl+U or Ctrl+X           | Erases all characters from the cursor back to the beginning of the command line.            | 커서에서부터 명령줄의 시작 부분까지 모든 문자를 지움        |
+| Ctrl+W                     | Erases the word to the left of the cursor.                                                  | 커서 왼쪽의 단어를 지움                                     |
+| Ctrl+A                     | Moves the cursor to the beginning of the line.                                              | 커맨드의 맨 처음으로 돌아감                                 |
+| Left Arrow or Ctrl+B       | Moves the cursor one character to the left.                                                 | 커서 왼쪽 문자로 한칸씩 이동                                |
+| Esc B                      | Moves the cursor back one word to the left.                                                 | 커서 왼쪽에 있는 단어 앞으로 커서를 옮김                    |
+| Esc F                      | Moves the cursor forward one word to the right.                                             | 커서 오른쪽에 있는 단어 뒤로 커서를 옮김                    |
+| Right Arrow or Ctrl+F      | Moves the cursor one character to the right.                                                | 커서 오른쪽 문자로 한칸씩 이동                              |
+| Ctrl+E                     | Moves the cursor to the end of command line.                                                | 커맨드의 끝 부분으로 커서 이동                              |
+| Up Arrow or Ctrl+P         | Recalls the previous command in the history buffer, beginning with the most recent command. | 히스토리 버퍼에서 가장 최근의 커맨드부터 커맨드를 불러옴    |
+| Down Arrow or Ctrl+N       | Goes to the next line in the history buffer.                                                | 히스토리 버퍼에서 다음 줄로 이동                            |
+| Ctrl+R or Ctrl+I or Ctrl+L | Redisplays the system prompt and command line after a console message is received           | 콘솔 로그 메시지를 받거나 하여 프롬프트를 다시 불러옴       |
 
 # CISCO VLAN
 
