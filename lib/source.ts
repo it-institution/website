@@ -19,18 +19,45 @@ export type postMetadataType = {
   title: string;
   draft: boolean;
   date: Date;
+  author: authorType;
 };
 
-export function getPostMetadata(post: blogType): postMetadataType {
+export type authorType = {
+  nickname: string;
+  githubUrl: string;
+  avatarUrl: string;
+};
+
+export async function getPostMetadata(
+  post: blogType
+): Promise<postMetadataType> {
+  const emptyData = {
+    url: "",
+    title: "",
+    draft: false,
+    date: new Date(),
+    author: {
+      nickname: "",
+      githubUrl: "",
+      avatarUrl: "",
+    } as authorType,
+  };
+
   if (!post) {
     console.error("Post not found");
 
-    return {
-      url: "",
-      title: "",
-      draft: false,
-      date: new Date(),
-    };
+    return emptyData;
+  }
+
+  // https://api.github.com/users/{post.data.author}
+  const author: any = await fetch(
+    `https://api.github.com/users/${post.data.author}`
+  ).then((res) => res.json());
+
+  if (!author) {
+    console.error(post.url, "Author not found");
+
+    return emptyData;
   }
 
   return {
@@ -38,15 +65,24 @@ export function getPostMetadata(post: blogType): postMetadataType {
     title: post.data.title,
     draft: post.data.draft,
     date: post.data.date,
+    author: {
+      nickname: author?.name,
+      githubUrl: author?.html_url,
+      avatarUrl: author?.avatar_url,
+    } as authorType,
   };
 }
 
-export function getPostsMetadata(posts: blogListType): postMetadataType[] {
-  return posts
-    .sort((a, b) => {
-      return b.data.date.getTime() - a.data.date.getTime();
-    })
-    .map((post) => {
-      return getPostMetadata(post);
-    });
+export async function getPostsMetadata(
+  posts: blogListType
+): Promise<postMetadataType[]> {
+  return Promise.all(
+    posts
+      .sort((a, b) => {
+        return b.data.date.getTime() - a.data.date.getTime();
+      })
+      .map((post) => {
+        return getPostMetadata(post);
+      })
+  );
 }
