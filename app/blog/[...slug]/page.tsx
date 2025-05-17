@@ -80,7 +80,7 @@ export default async function Page({
   );
 
   return (
-    <section>
+    <section className="mx-auto flex max-w-3xl flex-col gap-8 px-4 py-12">
       <DocsBody>
         <div style={{ wordBreak: "break-word", overflowWrap: "break-word" }}>
           <MDX
