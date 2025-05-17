@@ -1,6 +1,8 @@
 import { docs, meta } from "@/.source";
 import { createMDXSource } from "fumadocs-mdx";
 import { loader } from "fumadocs-core/source";
+import fs from "fs";
+import path from "path";
 
 export const blog = loader({
   // i18n: {
@@ -23,6 +25,7 @@ export type postMetadataType = {
 };
 
 export type authorType = {
+  name: string;
   nickname: string;
   githubUrl: string;
   avatarUrl: string;
@@ -37,6 +40,7 @@ export async function getPostMetadata(
     draft: false,
     date: new Date(),
     author: {
+      name: "",
       nickname: "",
       githubUrl: "",
       avatarUrl: "",
@@ -49,20 +53,16 @@ export async function getPostMetadata(
     return emptyData;
   }
 
-  // https://api.github.com/users/{post.data.author}
-  let author: any;
+  // Load author data from content/author.json
+  let author: authorType | undefined;
   try {
-    const response = await fetch(
-      `https://api.github.com/users/${post.data.author}`
+    const authorJsonPath = path.join(process.cwd(), "content", "author.json");
+    const authors: authorType[] = JSON.parse(
+      fs.readFileSync(authorJsonPath, "utf-8")
     );
-    if (!response.ok) {
-      throw new Error(
-        `Failed to fetch author data: ${response.status} ${response.statusText}`
-      );
-    }
-    author = await response.json();
+    author = authors.find((a) => a.nickname === post.data.author);
   } catch (error) {
-    console.error(post.url, "Error fetching author data:", error);
+    console.error(post.url, "Error loading author data:", error);
     return emptyData;
   }
 
@@ -76,11 +76,7 @@ export async function getPostMetadata(
     title: post.data.title,
     draft: post.data.draft,
     date: post.data.date,
-    author: {
-      nickname: author?.name,
-      githubUrl: author?.html_url,
-      avatarUrl: author?.avatar_url,
-    } as authorType,
+    author: author,
   };
 }
 

@@ -102,13 +102,13 @@ export default async function Page({
         >
           <Image
             src={postMetadata.author.avatarUrl}
-            alt={postMetadata.author.nickname}
+            alt={postMetadata.author.nickname ?? "author avatar"}
             width={32}
             height={32}
             className="rounded-full"
           />
           <p className="text-sm text-muted-foreground hover:text-primary">
-            {postMetadata.author.nickname}
+            {postMetadata.author.name}
           </p>
         </Link>
 

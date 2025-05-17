@@ -3,9 +3,7 @@
 import Link from "next/link";
 import { cn, formatDate, formatYear } from "@/lib/utils";
 
-import { useQueryState, parseAsString } from "nuqs";
 import { postMetadataType } from "@/lib/source";
-// import { Badge } from "@/components/ui/badge";
 
 // 간단한 Badge 대체 컴포넌트
 function Badge({ children }: { children: React.ReactNode }) {
@@ -16,22 +14,7 @@ function Badge({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function BlogList({
-  // lang,
-  posts,
-}: {
-  // lang: string;
-  posts: postMetadataType[];
-}) {
-  // const [query] = useQueryState(
-  //   "q",
-  //   parseAsString.withDefault(lang == "en" ? "(en)" : "")
-  // );
-
-  return <BlogListFallback posts={posts} />;
-}
-
-export function BlogListFallback({ posts }: { posts: postMetadataType[] }) {
+export function BlogList({ posts }: { posts: postMetadataType[] }) {
   const filteredPosts = posts;
 
   const yearList = filteredPosts.reduce(
