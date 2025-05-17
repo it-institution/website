@@ -18,7 +18,7 @@ export default async function Page({
 }) {
   const { q: query } = await loadSearchParams(searchParams);
 
-  const posts = getPostsMetadata(blog.getPages());
+  const posts = await getPostsMetadata(blog.getPages());
 
   return (
     <section className="max-w-3xl mx-auto px-4 py-12">
