@@ -6,6 +6,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  output: "export",
 
   distDir: process.env.NODE_ENV === "production" ? ".next" : ".next-dev",
 
