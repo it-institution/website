@@ -18,13 +18,11 @@ export default async function Page({
 }) {
   const { q: query } = await loadSearchParams(searchParams);
 
-  // TODO: FIXME
-  // const locale = "ko";
-
   const posts = getPostsMetadata(blog.getPages());
 
   return (
-    <section>
+    <section className="max-w-3xl mx-auto px-4 py-12">
+      <h1 className="mb-8 text-3xl font-bold tracking-tight">Blog</h1>
       <Suspense fallback={<BlogListFallback posts={posts} />}>
         <BlogList posts={posts} />
       </Suspense>

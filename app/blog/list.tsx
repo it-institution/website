@@ -7,6 +7,15 @@ import { useQueryState, parseAsString } from "nuqs";
 import { postMetadataType } from "@/lib/source";
 // import { Badge } from "@/components/ui/badge";
 
+// 간단한 Badge 대체 컴포넌트
+function Badge({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="inline-block rounded bg-gray-200 px-2 py-0.5 text-xs font-semibold text-gray-700 dark:bg-gray-700 dark:text-gray-200">
+      {children}
+    </span>
+  );
+}
+
 export function BlogList({
   // lang,
   posts,
@@ -23,17 +32,14 @@ export function BlogList({
 }
 
 export function BlogListFallback({ posts }: { posts: postMetadataType[] }) {
-  // FIXME
   const filteredPosts = posts;
 
   const yearList = filteredPosts.reduce(
     (acc: Record<string, postMetadataType[]>, post) => {
       const year = formatYear(post.date);
-
       if (!acc[year]) {
         acc[year] = [];
       }
-
       acc[year].push(post);
       return acc;
     },
@@ -62,38 +68,33 @@ export function BlogListFallback({ posts }: { posts: postMetadataType[] }) {
                   {year}
                 </h2>
               </div>
-              {
-                <ul data-animate className="w-full space-y-3">
-                  {yearList[year].map((post: postMetadataType) => (
-                    <li
-                      data-animate
-                      key={post.url}
-                      className="group/post flex justify-between space-x-4"
-                    >
-                      <Link href={post.url}>
-                        <span
-                          className={cn(
-                            itemSytles,
-                            "inline box-decoration-clone px-2 py-1"
-                          )}
-                        >
-                          {post.title}
-                        </span>
-                      </Link>
-
-                      {post.draft ? (
-                        // <Badge variant="secondary">Draft</Badge>
-                        // TODO: FIXME
-                        <div>Draft</div>
-                      ) : (
-                        <div className={cn(itemSytles, "h-fit text-nowrap")}>
-                          {formatDate(post.date)}
-                        </div>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              }
+              <ul data-animate className="w-full space-y-3">
+                {yearList[year].map((post: postMetadataType) => (
+                  <li
+                    data-animate
+                    key={post.url}
+                    className="group/post flex justify-between space-x-4"
+                  >
+                    <Link href={post.url}>
+                      <span
+                        className={cn(
+                          itemSytles,
+                          "inline box-decoration-clone px-2 py-1"
+                        )}
+                      >
+                        {post.title}
+                      </span>
+                    </Link>
+                    {post.draft ? (
+                      <Badge>Draft</Badge>
+                    ) : (
+                      <div className={cn(itemSytles, "h-fit text-nowrap")}>
+                        {formatDate(post.date)}
+                      </div>
+                    )}
+                  </li>
+                ))}
+              </ul>
             </div>
           ))
       )}

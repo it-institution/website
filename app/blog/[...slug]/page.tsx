@@ -80,31 +80,7 @@ export default async function Page({
   );
 
   return (
-    <section data-animate>
-      <aside className="fixed top-36 left-8 hidden w-72 2xl:block">
-        {post.data.toc.length > 0 && (
-          <div className="text-sm">
-            <nav data-animate>
-              {post.data.toc.map((item: TOCItemType) => (
-                <a
-                  key={item.url}
-                  href={item.url}
-                  className={cn(
-                    "my-1 block",
-                    "hover:bg-secondary/100 animation:enter w-fit rounded-md px-0.5",
-                    "box-decoration-clone px-2 py-1"
-                  )}
-                  style={{ marginLeft: `${(item.depth - 1) * 1}rem` }}
-                >
-                  {/* eslint-disable-next-line */}
-                  {/* @ts-ignore */}
-                  {item.title?.props.children}
-                </a>
-              ))}
-            </nav>
-          </div>
-        )}
-      </aside>
+    <section>
       <DocsBody>
         <div style={{ wordBreak: "break-word", overflowWrap: "break-word" }}>
           <MDX
