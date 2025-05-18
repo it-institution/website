@@ -48,41 +48,57 @@ export default function Navigation() {
             alt="Logo"
             width={30}
             height={30}
-            className="transition-transform duration-700 group-hover:[animation:spin_1s_cubic-bezier(0.22,1,0.36,1)_1]"
+            className="transition-transform duration-700"
             style={{
               animationPlayState: "paused",
             }}
             onMouseEnter={(e) => {
-              // Start animation after 1s hover
               const img = e.currentTarget;
+              // Prevent multiple triggers if already spinning
+              if (img.dataset.isSpinning === "true") return;
               img.dataset.hoverTimeout = window
                 .setTimeout(() => {
-                  img.style.animationPlayState = "running";
-                  // Reset after animation
+                  img.dataset.isSpinning = "true";
+                  img.style.animation = "spin 1s cubic-bezier(0.22,1,0.36,1) 1";
                   setTimeout(() => {
-                    img.style.animationPlayState = "paused";
+                    img.style.animation = "";
+                    img.dataset.isSpinning = "false";
                   }, 1000);
                 }, 1000)
                 .toString();
             }}
             onMouseLeave={(e) => {
-              // Cancel animation if mouse leaves early
               const img = e.currentTarget;
-              if (img.dataset.hoverTimeout) {
+              // Cancel timeout only if not spinning
+              if (
+                img.dataset.isSpinning !== "true" &&
+                img.dataset.hoverTimeout
+              ) {
                 clearTimeout(Number(img.dataset.hoverTimeout));
                 img.dataset.hoverTimeout = "";
               }
-              img.style.animationPlayState = "paused";
+              // Do not stop animation if spinning
+            }}
+            onClick={(e) => {
+              const img = e.currentTarget;
+              if (img.dataset.isSpinning === "true") return;
+              img.dataset.isSpinning = "true";
+              img.style.animation = "spin 1s cubic-bezier(0.22,1,0.36,1) 1";
+              setTimeout(() => {
+                img.style.animation = "";
+                img.dataset.isSpinning = "false";
+              }, 1000);
+            }}
+            tabIndex={0}
+            onBlur={(e) => {
+              // Do nothing, allow spin to finish
             }}
           />
           <style jsx global>{`
             @keyframes spin {
               to {
-          transform: rotate(360deg);
+                transform: rotate(360deg);
               }
-            }
-            .group-hover\\:[animation\\:spin_1s_cubic-bezier\\(0.22\\,1\\,0.36\\,1\\)_1]:hover {
-              animation: spin 1s cubic-bezier(0.22,1,0.36,1) 1;
             }
           `}</style>
         </Link>
