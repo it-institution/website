@@ -3,8 +3,11 @@ import { Inter } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 import { ThemeProvider } from "@/components/theme-provider";
+import Navigation from "@/components/navigation";
+import Footer from "@/components/footer";
 
 import "./globals.css";
+import { cn } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,12 +23,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko-KR" suppressHydrationWarning>
-      <body
-        className={
-          inter.className +
-          " antialiased text-gray-900 dark:text-gray-100 bg-transparent"
-        }
-      >
+      <body className={cn(inter.className, "antialiased")}>
+        <Navigation />
         <NuqsAdapter>
           <ThemeProvider
             attribute="class"
@@ -33,7 +32,8 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+            <main className="min-h-screen">{children}</main>
+            <Footer />
           </ThemeProvider>
         </NuqsAdapter>
       </body>

@@ -11,6 +11,7 @@ import { ImageZoom } from "fumadocs-ui/components/image-zoom";
 import { Callout } from "fumadocs-ui/components/callout";
 import { TOCItemType } from "fumadocs-core/server";
 import Image from "next/image";
+import Container from "@/components/container";
 
 export async function generateStaticParams() {
   return blog.generateParams();
@@ -83,14 +84,13 @@ export default async function Page({
   );
 
   return (
-    <section className="mx-auto flex max-w-3xl flex-col gap-8 px-4 py-12">
+    <Container>
       <Link
         href="/blog"
         className="text-sm text-muted-foreground hover:text-primary focus:outline-none focus:ring-2 focus:ring-blue-400 rounded transition-colors"
       >
         ← 블로그 목록으로
       </Link>
-
       <div className="flex flex-col gap-4">
         <h1 className="text-3xl font-bold text-blue-900 dark:text-blue-200">
           {post.data.title}
@@ -98,7 +98,6 @@ export default async function Page({
         <h3 className="text-muted-foreground text-sm">
           {post.data.description}
         </h3>
-
         <Link
           href={postMetadata.author.githubUrl || "#"}
           target="_blank"
@@ -117,10 +116,8 @@ export default async function Page({
             {postMetadata.author.name || "Unknown Author"}
           </p>
         </Link>
-
         <div className="my-4 h-[0.5px] w-full bg-neutral-200 dark:bg-neutral-600" />
       </div>
-
       <DocsBody>
         <div style={{ wordBreak: "break-word", overflowWrap: "break-word" }}>
           <MDX
@@ -147,7 +144,6 @@ export default async function Page({
           />
         </div>
       </DocsBody>
-
       <section className="mt-32">
         <div className="text-muted-foreground mb-8 flex flex-row items-center gap-2 text-sm">
           <div className="flex gap-2">
@@ -156,9 +152,7 @@ export default async function Page({
               {formatDateLong(post.data.date)}
             </time>
           </div>
-
           {post.data.lastModified && <span className="mx-2">•</span>}
-
           {post.data.lastModified && (
             <div className="flex gap-2">
               <span>최종 수정일:</span>
@@ -167,12 +161,9 @@ export default async function Page({
               </time>
             </div>
           )}
-
           {post.data.draft && <span className="mx-2">•</span>}
-
           {post.data.draft && <span className="text-red-500">Draft</span>}
         </div>
-
         <hr className="my-8" />
         <div className="mb-8 flex flex-col items-center justify-center">
           <h2 className="opacity-60 text-lg font-semibold">
@@ -190,7 +181,6 @@ export default async function Page({
           ) : (
             <div></div>
           )}
-
           {postsIndex[post.slugs.join("/")].next && (
             <Link
               href={`${postsIndex[post.slugs.join("/")].next?.url}`}
@@ -201,6 +191,6 @@ export default async function Page({
           )}
         </div>
       </section>
-    </section>
+    </Container>
   );
 }
