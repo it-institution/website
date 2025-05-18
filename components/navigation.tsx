@@ -6,11 +6,10 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 
 const navItems = [
+  { href: "/about", label: "학회 소개" },
+  { href: "/projects", label: "프로젝트" },
   { href: "/blog", label: "블로그" },
-  // { href: "/about", label: "소개" },
-  // { href: "/projects", label: "프로젝트" },
-  // { href: "/gallery", label: "갤러리" },
-  // { href: "/contact", label: "문의" },
+  { href: "/gallery", label: "갤러리" },
 ];
 
 export default function Navigation() {

@@ -56,6 +56,13 @@ const nextConfig: NextConfig = {
         pathname: "/**/*",
       },
       {
+        // https://placehold.co
+        protocol: "https",
+        hostname: "placehold.co",
+        port: "",
+        pathname: "/**/*",
+      },
+      {
         protocol: "https",
         hostname: "recipe1.ezmember.co.kr",
         port: "",
