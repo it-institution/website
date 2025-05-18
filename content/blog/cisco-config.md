@@ -42,7 +42,7 @@ terminal length 0
 ## CISCO VLAN
 
 ```bash
-# Occurr
+# Occurrence
 switchport mode trunk
 # Command rejected: An interface whose trunk encapsulation is "Auto" can not be configured to "trunk" mode
 
