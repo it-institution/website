@@ -51,7 +51,7 @@ switchport trunk encapsulation dot1q
 switchport mode trunk
 
 # SVI
-interface vlan [VLAN 번호]
+interface vlan [VLAN ID]
 ip address [address] [netmask]
 
 # Switch GW Config
