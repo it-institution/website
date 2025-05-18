@@ -28,7 +28,7 @@ https://github.com/it-institution
 
 **Github에서 코드 clone 하기**
 
-[https://github.com/it-institution/website-cf](https://github.com/it-institution/website-cf)
+[https://github.com/it-institution/website](https://github.com/it-institution/website)
 
 1. 위 깃허브 사이트를 들어가줍니다.
 2. `Clone` 방법 중 `Https` `Ssh` 편하신걸 선택해주세요.
@@ -45,7 +45,7 @@ SSH, HTTPS push할 시 인증 방법이 다릅니다.
 1. clone받기
 
 ```bash
-git clone git@github.com:it-institution/website-cf.git
+git clone git@github.com:it-institution/website.git
 ```
 
 ### 2.0 블로그를 작성하기 전 절차
@@ -75,10 +75,10 @@ git clone git@github.com:it-institution/website-cf.git
 [main] git checkout [작성한 브랜치] # 브랜치 옮기기
 
 # 위 절차대로 진행하면
-➜  website-cf git:(main) git checkout 25/06/17/TestBlog
+➜  website git:(main) git checkout 25/06/17/TestBlog
 branch '25/06/17/TestBlog' set up to track 'origin/25/06/17/TestBlog'.
 새로 만든 '25/06/17/TestBlog' 브랜치로 전환합니다
-➜  website-cf git:(25/06/17/TestBlog)
+➜  website git:(25/06/17/TestBlog)
 
 # 이렇게 됩니당
 ```
@@ -89,7 +89,7 @@ branch '25/06/17/TestBlog' set up to track 'origin/25/06/17/TestBlog'.
 
 먼저 우리 블로그는 `Markdown`으로 작성됩니다.
 
-1. 블로그 디렉토리는 `website-cf/content/blog` 입니다.
+1. 블로그 디렉토리는 `website/content/blog` 입니다.
 2. test.mdx 파일은 블로그양식입니다 참고해주세요.
    1. **파일 제목은 경로가 됩니다.**
 3. 블로그 작성하신 후 git push 해주세요
@@ -126,10 +126,10 @@ git push
   Total 5 (delta 1), reused 0 (delta 0), pack-reused 0
   remote: Resolving deltas: 100% (1/1), completed with 1 local object.
   remote:
-  remote: GitHub found 1 vulnerability on it-institution/website-cf's default branch (1 moderate). To find out more, visit:
-  remote:      https://github.com/it-institution/website-cf/security/dependabot/1
+  remote: GitHub found 1 vulnerability on it-institution/website's default branch (1 moderate). To find out more, visit:
+  remote:      https://github.com/it-institution/website/security/dependabot/1
   remote:
-  To github.com:it-institution/website-cf.git
+  To github.com:it-institution/website.git
      baf0021..2fb85cb  25/06/17/TestBlog -> 25/06/17/TestBlog
   ➜  blog git:(25/06/17/TestBlog)
   ```
