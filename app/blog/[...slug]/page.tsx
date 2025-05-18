@@ -84,35 +84,41 @@ export default async function Page({
 
   return (
     <section className="mx-auto flex max-w-3xl flex-col gap-8 px-4 py-12">
-      <Link href="/blog" className="text-sm text-muted-foreground">
-        ← Back to blog
+      <Link
+        href="/blog"
+        className="text-sm text-muted-foreground hover:text-primary focus:outline-none focus:ring-2 focus:ring-blue-400 rounded transition-colors"
+      >
+        ← 블로그 목록으로
       </Link>
 
       <div className="flex flex-col gap-4">
-        <h1 className="text-3xl font-bold">{post.data.title}</h1>
+        <h1 className="text-3xl font-bold text-blue-900 dark:text-blue-200">
+          {post.data.title}
+        </h1>
         <h3 className="text-muted-foreground text-sm">
           {post.data.description}
         </h3>
 
         <Link
-          href={postMetadata.author.githubUrl}
+          href={postMetadata.author.githubUrl || "#"}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex flex-row items-center gap-2"
+          className="flex flex-row items-center gap-2 group"
+          aria-label={postMetadata.author.name || "작성자"}
         >
           <Image
-            src={postMetadata.author.avatarUrl}
+            src={postMetadata.author.avatarUrl || "/favicon.ico"}
             alt={postMetadata.author.nickname ?? "author avatar"}
             width={32}
             height={32}
-            className="rounded-full"
+            className="rounded-full border border-gray-200 dark:border-gray-700 group-hover:scale-105 transition-transform"
           />
-          <p className="text-sm text-muted-foreground hover:text-primary">
-            {postMetadata.author.name}
+          <p className="text-sm text-muted-foreground group-hover:text-primary">
+            {postMetadata.author.name || "Unknown Author"}
           </p>
         </Link>
 
-        <div className="my-4 h-[0.5px] w-full bg-neutral-600" />
+        <div className="my-4 h-[0.5px] w-full bg-neutral-200 dark:bg-neutral-600" />
       </div>
 
       <DocsBody>
@@ -121,8 +127,7 @@ export default async function Page({
             className="mdx"
             components={{
               ...defaultMdxComponents,
-              // img: (props) => <ImageZoom {...props} />,
-              img: (props) => <Image {...props} alt={props.alt} />,
+              img: (props) => <Image {...props} alt={props.alt || "image"} />,
               Tab,
               Tabs,
               Callout,
@@ -131,7 +136,7 @@ export default async function Page({
                 return (
                   <Link
                     href={href}
-                    className="text-primary hover:bg-secondary/100 rounded-md px-2 py-1"
+                    className="text-primary hover:bg-secondary/100 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-colors"
                     {...rest}
                   >
                     {children}
@@ -152,7 +157,7 @@ export default async function Page({
             </time>
           </div>
 
-          {post.data.lastModified && <>{" • "}</>}
+          {post.data.lastModified && <span className="mx-2">•</span>}
 
           {post.data.lastModified && (
             <div className="flex gap-2">
@@ -163,20 +168,22 @@ export default async function Page({
             </div>
           )}
 
-          {post.data.draft && <>{" • "}</>}
+          {post.data.draft && <span className="mx-2">•</span>}
 
-          {post.data.draft && <span>draft</span>}
+          {post.data.draft && <span className="text-red-500">Draft</span>}
         </div>
 
         <hr className="my-8" />
         <div className="mb-8 flex flex-col items-center justify-center">
-          <h2 className="opacity-60">{`이전 글 / 다음 글`}</h2>
+          <h2 className="opacity-60 text-lg font-semibold">
+            이전 글 / 다음 글
+          </h2>
         </div>
         <div className="flex justify-between">
           {postsIndex[post.slugs.join("/")].previous ? (
             <Link
               href={`${postsIndex[post.slugs.join("/")].previous?.url}`}
-              className="text-primary hover:bg-secondary/100 rounded-md px-2 py-1"
+              className="text-primary hover:bg-blue-50 dark:hover:bg-blue-900 rounded-md px-2 py-1 transition-colors"
             >
               ← {postsIndex[post.slugs.join("/")].previous?.data.title}
             </Link>
@@ -187,7 +194,7 @@ export default async function Page({
           {postsIndex[post.slugs.join("/")].next && (
             <Link
               href={`${postsIndex[post.slugs.join("/")].next?.url}`}
-              className="text-primary hover:bg-secondary/100 rounded-md px-2 py-1"
+              className="text-primary hover:bg-blue-50 dark:hover:bg-blue-900 rounded-md px-2 py-1 transition-colors"
             >
               {postsIndex[post.slugs.join("/")].next?.data.title} →
             </Link>

@@ -1,4 +1,52 @@
 @import "tailwindcss";
-
 @import "fumadocs-ui/css/neutral.css";
 @import "fumadocs-ui/css/preset.css";
+
+/* Modern, clean background: remove gradient, use solid color for both light/dark */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", "Pretendard", "Noto Sans KR", Arial, sans-serif;
+  background: #f7f8fa;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #18181b;
+  }
+}
+
+::selection {
+  background: #2563eb;
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+@media (prefers-color-scheme: dark) {
+  ::selection {
+    background: #60a5fa;
+    color: #18181b;
+  }
+  ::-webkit-scrollbar {
+    background: #23272f;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #334155;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+  }
+}

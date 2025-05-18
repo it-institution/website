@@ -20,7 +20,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko-KR" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body
+        className={
+          inter.className +
+          " antialiased text-gray-900 dark:text-gray-100 bg-transparent"
+        }
+      >
         <NuqsAdapter>
           <ThemeProvider
             attribute="class"
