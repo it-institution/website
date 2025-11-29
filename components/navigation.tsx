@@ -6,10 +6,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 
 const navItems = [
-  { href: "/about", label: "학회 소개" },
-  { href: "/projects", label: "프로젝트" },
   { href: "/blog", label: "블로그" },
-  { href: "/gallery", label: "갤러리" },
 ];
 
 export default function Navigation() {
@@ -40,67 +37,15 @@ export default function Navigation() {
   }, [isMobile]);
 
   return (
-    <nav className="w-full bg-white/80 dark:bg-gray-900/80 border-b border-gray-200 dark:border-gray-800 shadow-sm sticky top-0 z-50 backdrop-blur">
+    <nav className="w-full bg-white dark:bg-black border-b border-gray-200 dark:border-gray-800 sticky top-0 z-50">
       <div className="max-w-5xl mx-auto flex items-center justify-between gap-6 px-4 py-3">
-        <Link href="/" className="group">
+        <Link href="/">
           <Image
             src={logoImg}
             alt="Logo"
             width={30}
             height={30}
-            className="transition-transform duration-700"
-            style={{
-              animationPlayState: "paused",
-            }}
-            onMouseEnter={(e) => {
-              const img = e.currentTarget;
-              // Prevent multiple triggers if already spinning
-              if (img.dataset.isSpinning === "true") return;
-              img.dataset.hoverTimeout = window
-                .setTimeout(() => {
-                  img.dataset.isSpinning = "true";
-                  img.style.animation = "spin 1s cubic-bezier(0.22,1,0.36,1) 1";
-                  setTimeout(() => {
-                    img.style.animation = "";
-                    img.dataset.isSpinning = "false";
-                  }, 1000);
-                }, 1000)
-                .toString();
-            }}
-            onMouseLeave={(e) => {
-              const img = e.currentTarget;
-              // Cancel timeout only if not spinning
-              if (
-                img.dataset.isSpinning !== "true" &&
-                img.dataset.hoverTimeout
-              ) {
-                clearTimeout(Number(img.dataset.hoverTimeout));
-                img.dataset.hoverTimeout = "";
-              }
-              // Do not stop animation if spinning
-            }}
-            onClick={(e) => {
-              const img = e.currentTarget;
-              if (img.dataset.isSpinning === "true") return;
-              img.dataset.isSpinning = "true";
-              img.style.animation = "spin 1s cubic-bezier(0.22,1,0.36,1) 1";
-              setTimeout(() => {
-                img.style.animation = "";
-                img.dataset.isSpinning = "false";
-              }, 1000);
-            }}
-            tabIndex={0}
-            onBlur={(e) => {
-              // Do nothing, allow spin to finish
-            }}
           />
-          <style jsx global>{`
-            @keyframes spin {
-              to {
-                transform: rotate(360deg);
-              }
-            }
-          `}</style>
         </Link>
 
         {/* Mobile hamburger menu */}
@@ -110,19 +55,16 @@ export default function Navigation() {
           aria-label="Toggle menu"
         >
           <span
-            className={`bg-gray-700 dark:bg-gray-200 block h-0.5 w-6 rounded transition-all duration-300 ${
-              isMenuOpen ? "rotate-45 translate-y-1.5" : ""
-            }`}
+            className={`bg-gray-700 dark:bg-gray-200 block h-0.5 w-6 rounded ${isMenuOpen ? "rotate-45 translate-y-1.5" : ""
+              }`}
           ></span>
           <span
-            className={`bg-gray-700 dark:bg-gray-200 block h-0.5 w-6 rounded my-1 ${
-              isMenuOpen ? "opacity-0" : ""
-            }`}
+            className={`bg-gray-700 dark:bg-gray-200 block h-0.5 w-6 rounded my-1 ${isMenuOpen ? "opacity-0" : ""
+              }`}
           ></span>
           <span
-            className={`bg-gray-700 dark:bg-gray-200 block h-0.5 w-6 rounded transition-all duration-300 ${
-              isMenuOpen ? "-rotate-45 -translate-y-1.5" : ""
-            }`}
+            className={`bg-gray-700 dark:bg-gray-200 block h-0.5 w-6 rounded ${isMenuOpen ? "-rotate-45 -translate-y-1.5" : ""
+              }`}
           ></span>
         </button>
 
@@ -132,7 +74,7 @@ export default function Navigation() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 font-medium px-2 py-1 rounded transition-colors"
+              className="text-gray-700 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-300 font-medium px-2 py-1 rounded"
             >
               {item.label}
             </Link>
@@ -142,13 +84,13 @@ export default function Navigation() {
 
       {/* Mobile navigation drawer */}
       {isMenuOpen && (
-        <div className="md:hidden w-full bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 shadow-md">
+        <div className="md:hidden w-full bg-white dark:bg-black border-b border-gray-200 dark:border-gray-800">
           <div className="flex flex-col px-4 py-3">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 font-medium px-2 py-3 border-b border-gray-100 dark:border-gray-800 last:border-0 transition-colors"
+                className="text-gray-700 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-300 font-medium px-2 py-3 border-b border-gray-100 dark:border-gray-800 last:border-0"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.label}

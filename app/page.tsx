@@ -6,46 +6,37 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-b from-blue-900 via-blue-800 to-blue-900 dark:from-gray-900 dark:via-blue-950 dark:to-gray-900 text-white py-20">
-        <div className="absolute inset-0 bg-grid-white/[0.05] bg-[length:40px_40px]"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-800/30 dark:via-blue-900/30 to-transparent"></div>
+      <section className="relative bg-black dark:bg-black text-white py-20">
         <div className="max-w-5xl mx-auto px-4 relative z-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-10">
             <div className="text-center md:text-left space-y-6 md:max-w-lg">
-              <div className="inline-block px-3 py-1 rounded-full bg-blue-800/30 dark:bg-blue-900/30 text-blue-100 dark:text-blue-200 text-sm font-medium mb-2">
+              <div className="inline-block px-3 py-1 rounded-full bg-gray-800 text-white text-sm font-medium mb-2">
                 IT 특성화고 전문가 모임
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-blue-400">
+                <span className="text-white">
                   IT 학회
                 </span>
                 <br />각 분야 전문가들의 모임
               </h1>
-              <p className="text-lg md:text-xl text-blue-100 dark:text-blue-200">
+              <p className="text-lg md:text-xl text-gray-300">
                 IT 특성화고에서의 기초를 다지고 현업의 전문가로 성장한 우리들의
                 기술 교류와 네트워킹 커뮤니티
               </p>
               <div className="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
                 <Link
-                  href="/about"
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors shadow-lg hover:shadow-blue-500/20"
+                  href="/blog"
+                  className="bg-white text-black px-6 py-3 rounded-lg font-medium"
                 >
-                  학회 소개
-                </Link>
-                <Link
-                  href="/projects"
-                  className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white px-6 py-3 rounded-lg font-medium transition-colors border border-white/20"
-                >
-                  프로젝트 보기
+                  블로그 보기
                 </Link>
               </div>
             </div>
             <div className="relative w-full max-w-sm aspect-square">
-              <div className="absolute inset-0 rounded-full bg-blue-600/20 blur-3xl"></div>
               <div className="relative w-full h-full rounded-xl overflow-hidden">
                 <div className="w-full h-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center">
                   <Image
-                    src="https://placehold.co/800x800/3b82f6/FFFFFF/png?text=IT+학회"
+                    src="https://placehold.co/800x800/000000/FFFFFF/png?text=IT+학회"
                     alt="IT 학회"
                     width={800}
                     height={800}
@@ -59,13 +50,13 @@ export default function Home() {
       </section>
 
       {/* Core Principles */}
-      <section className="py-16 bg-white dark:bg-gray-900">
+      <section className="py-16 bg-white dark:bg-black">
         <div className="max-w-5xl mx-auto px-4">
           <div className="flex flex-col items-center text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-white">
               학회의 핵심 원칙
             </h2>
-            <div className="w-20 h-1.5 bg-blue-600 rounded-full mb-6"></div>
+            <div className="w-20 h-1.5 bg-black dark:bg-white rounded-full mb-6"></div>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl">
               IT 학회는 단순한 친목 모임을 넘어, 실질적인 기술 역량 강화와 의미
               있는 성과 창출을 추구합니다.
@@ -81,7 +72,7 @@ export default function Home() {
               {
                 title: "전문성 심화",
                 description:
-                  "각자의 업무 영역을 넘어, 관심 기술 분야에 대한 깊이 있는 탐구를 통해 전문성을 키워나갑니다.",
+                  "각자의 업무 영역을 넘어, 관심 기술 분야에 대한 깊이 있는 탐구를 through해 전문성을 키워나갑니다.",
               },
               {
                 title: "지식 공유 및 시너지 창출",
@@ -106,10 +97,10 @@ export default function Home() {
             ].map((principle, index) => (
               <div
                 key={index}
-                className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-shadow"
+                className="bg-gray-50 dark:bg-gray-900 p-6 rounded-lg border border-gray-100 dark:border-gray-700"
               >
-                <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mb-4">
-                  <span className="text-blue-600 dark:text-blue-400 text-xl font-bold">
+                <div className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center mb-4">
+                  <span className="text-black dark:text-white text-xl font-bold">
                     {index + 1}
                   </span>
                 </div>
@@ -126,13 +117,13 @@ export default function Home() {
       </section>
 
       {/* Activity Tracks */}
-      <section className="py-16 bg-gray-50 dark:bg-gray-800">
+      <section className="py-16 bg-gray-100 dark:bg-gray-900">
         <div className="max-w-5xl mx-auto px-4">
           <div className="flex flex-col items-center text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-white">
               주요 활동 트랙
             </h2>
-            <div className="w-20 h-1.5 bg-blue-600 rounded-full mb-6"></div>
+            <div className="w-20 h-1.5 bg-black dark:bg-white rounded-full mb-6"></div>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl">
               회원들의 관심사와 전문성을 고려하여 다음 트랙들을 중심으로 활동을
               전개합니다.
@@ -144,7 +135,7 @@ export default function Home() {
               {
                 title: "차세대 사이버 보안 및 윤리적 해킹",
                 image:
-                  "https://placehold.co/800x450/3b82f6/FFFFFF/png?text=사이버+보안",
+                  "https://placehold.co/800x450/000000/FFFFFF/png?text=사이버+보안",
                 description:
                   "최신 사이버 위협에 대한 심층 분석 및 대응 전략을 연구하고, 실전과 유사한 환경에서의 공방 훈련을 통해 최고 수준의 보안 전문가로 성장합니다.",
                 activities: [
@@ -158,7 +149,7 @@ export default function Home() {
               {
                 title: "현대적 소프트웨어 개발 및 아키텍처",
                 image:
-                  "https://placehold.co/800x450/3b82f6/FFFFFF/png?text=소프트웨어+개발",
+                  "https://placehold.co/800x450/000000/FFFFFF/png?text=소프트웨어+개발",
                 description:
                   "현재 직무에서 사용하지 않는 새로운 프로그래밍 언어, 프레임워크, 아키텍처를 학습하고, 실제 서비스를 개발하며 기술 스택을 확장합니다.",
                 activities: [
@@ -172,7 +163,7 @@ export default function Home() {
               {
                 title: "지능형 인프라 및 클라우드 네이티브 운영",
                 image:
-                  "https://placehold.co/800x450/3b82f6/FFFFFF/png?text=클라우드+인프라",
+                  "https://placehold.co/800x450/000000/FFFFFF/png?text=클라우드+인프라",
                 description:
                   "클라우드 환경을 중심으로 자동화되고 안정적인 인프라 구축 및 운영 능력을 배양하고, 최신 네트워크 기술 및 서버 관리 기법을 습득합니다.",
                 activities: [
@@ -191,7 +182,7 @@ export default function Home() {
                 <div
                   className={`w-full lg:w-1/2 ${index % 2 === 1 ? "lg:order-2" : ""}`}
                 >
-                  <div className="rounded-xl overflow-hidden shadow-lg">
+                  <div className="rounded-xl overflow-hidden">
                     <Image
                       src={track.image}
                       alt={track.title}
@@ -213,8 +204,8 @@ export default function Home() {
                   <div className="space-y-2">
                     {track.activities.map((activity, i) => (
                       <div key={i} className="flex items-start gap-3">
-                        <div className="min-w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mt-1">
-                          <span className="text-blue-600 dark:text-blue-400 text-sm">
+                        <div className="min-w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center mt-1">
+                          <span className="text-black dark:text-white text-sm">
                             {i + 1}
                           </span>
                         </div>
@@ -232,13 +223,13 @@ export default function Home() {
       </section>
 
       {/* Activity Methods */}
-      <section className="py-16 bg-white dark:bg-gray-900">
+      <section className="py-16 bg-white dark:bg-black">
         <div className="max-w-5xl mx-auto px-4">
           <div className="flex flex-col items-center text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-white">
               활동 방식
             </h2>
-            <div className="w-20 h-1.5 bg-blue-600 rounded-full mb-6"></div>
+            <div className="w-20 h-1.5 bg-black dark:bg-white rounded-full mb-6"></div>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl">
               다양한 방식으로 지속적인 학습과 교류를 이어갑니다
             </p>
@@ -269,7 +260,7 @@ export default function Home() {
             ].map((method, index) => (
               <div
                 key={index}
-                className="bg-gray-50 dark:bg-gray-800 p-8 rounded-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all"
+                className="bg-gray-50 dark:bg-gray-900 p-8 rounded-lg border border-gray-100 dark:border-gray-700"
               >
                 <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
                   {method.title}
@@ -284,28 +275,22 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-900 dark:to-blue-700 text-white">
+      <section className="py-16 bg-black dark:bg-black text-white">
         <div className="max-w-5xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             IT 전문가로서 함께 성장해요
           </h2>
-          <p className="text-xl text-blue-100 dark:text-blue-200 mb-10 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
             특성화고 시절의 열정을 이어받아, 현업에서의 전문성을 한층 더
             끌어올리고, 서로에게 든든한 기술적 동반자가 되어주는 공간에
             함께하세요.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
-              href="/contact"
-              className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-4 rounded-lg font-medium transition-colors shadow-lg"
+              href="/blog"
+              className="bg-white text-black px-8 py-4 rounded-lg font-medium"
             >
-              가입 문의하기
-            </Link>
-            <Link
-              href="/projects"
-              className="bg-blue-700/30 backdrop-blur-sm hover:bg-blue-700/50 text-white px-8 py-4 rounded-lg font-medium transition-colors border border-white/20"
-            >
-              프로젝트 구경하기
+              블로그 구경하기
             </Link>
           </div>
         </div>

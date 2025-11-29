@@ -27,7 +27,7 @@ export function BlogList({ posts }: { posts: postMetadataType[] }) {
   );
 
   const itemStyles =
-    "group-hover/year:opacity-100! group-hover/post:bg-secondary/100 group-hover/list:opacity-60 rounded-md transition-colors duration-150";
+    "group-hover/year:opacity-100! group-hover/post:bg-secondary/100 group-hover/list:opacity-60 rounded-md";
 
   return (
     <div className="group/list">
@@ -74,7 +74,7 @@ export function BlogList({ posts }: { posts: postMetadataType[] }) {
                       <span
                         className={cn(
                           itemStyles,
-                          "inline box-decoration-clone px-2 py-1 hover:bg-blue-50 dark:hover:bg-blue-900"
+                          "inline box-decoration-clone px-2 py-1 hover:bg-gray-100 dark:hover:bg-gray-800"
                         )}
                       >
                         {post.title}

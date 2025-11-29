@@ -2,51 +2,53 @@
 @import "fumadocs-ui/css/neutral.css";
 @import "fumadocs-ui/css/preset.css";
 
-/* Modern, clean background: remove gradient, use solid color for both light/dark */
-html {
-  scroll-behavior: smooth;
-}
+/* Minimal black and white design */
 
 body {
   font-family: "Inter", "Pretendard", "Noto Sans KR", Arial, sans-serif;
-  background: #f7f8fa;
+  background: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
   body {
-    background: #18181b;
+    background: #000000;
   }
 }
 
 ::selection {
-  background: #2563eb;
+  background: #000000;
   color: #fff;
 }
 
 ::-webkit-scrollbar {
   width: 8px;
-  background: #f1f5f9;
+  background: #e5e5e5;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #737373;
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #525252;
 }
 
 @media (prefers-color-scheme: dark) {
   ::selection {
-    background: #60a5fa;
-    color: #18181b;
+    background: #ffffff;
+    color: #000000;
   }
+
   ::-webkit-scrollbar {
-    background: #23272f;
+    background: #1a1a1a;
   }
+
   ::-webkit-scrollbar-thumb {
-    background: #334155;
+    background: #404040;
   }
+
   ::-webkit-scrollbar-thumb:hover {
-    background: #64748b;
+    background: #525252;
   }
 }
