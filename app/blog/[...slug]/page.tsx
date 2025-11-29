@@ -67,8 +67,8 @@ export default async function Page({
   );
 
   return (
-    <div className="min-h-screen bg-white text-black font-sans selection:bg-[#0070f3] selection:text-white pt-32 pb-12 px-4">
-      <div className="max-w-[1200px] mx-auto relative border border-solid border-neutral-200 min-h-[calc(100vh-10rem)]">
+    <div className="min-h-screen bg-white text-black font-sans selection:bg-[#0070f3] selection:text-white pt-32 pb-12">
+      <div className="max-w-5xl mx-auto px-4 relative border border-solid border-neutral-200 min-h-[calc(100vh-10rem)]">
 
         {/* Background Grid Layer (Lines) - Simplified to just the outer box (handled by container border) or just 2 lines if requested. 
             User said "Grid vertical lines 2 only, exactly general rectangle form". 
@@ -117,7 +117,13 @@ export default async function Page({
             {/* Article Header */}
             <header className="mb-16 text-center">
               <h1 className="text-[32px] font-bold tracking-tighter text-black leading-[1.1] mb-8">
-                {post.data.title}
+                <Link
+                  href={post.url}
+                  className="no-underline decoration-none text-black"
+                  style={{ textDecoration: 'none' }}
+                >
+                  {post.data.title}
+                </Link>
               </h1>
 
               {/* Author Profile */}
@@ -171,7 +177,7 @@ export default async function Page({
             </header>
 
             {/* Article Content */}
-            <DocsBody className="prose prose-neutral prose-lg max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-black prose-p:text-neutral-800 prose-p:leading-7 prose-a:no-underline hover:prose-a:underline prose-strong:font-semibold prose-strong:text-black prose-code:text-pink-600 prose-code:bg-transparent prose-code:font-normal prose-code:before:content-[''] prose-code:after:content-[''] prose-pre:bg-neutral-100 prose-pre:text-black prose-pre:border prose-pre:border-neutral-200 prose-img:rounded-lg">
+            <DocsBody className="prose prose-neutral prose-lg max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-black prose-headings:no-underline [&_h1_a]:no-underline [&_h2_a]:no-underline [&_h3_a]:no-underline [&_h4_a]:no-underline [&_h5_a]:no-underline [&_h6_a]:no-underline hover:[&_h1_a]:no-underline hover:[&_h2_a]:no-underline hover:[&_h3_a]:no-underline hover:[&_h4_a]:no-underline hover:[&_h5_a]:no-underline hover:[&_h6_a]:no-underline prose-p:text-neutral-800 prose-p:leading-7 prose-a:no-underline hover:prose-a:underline prose-strong:font-semibold prose-strong:text-black prose-code:text-pink-600 prose-code:bg-transparent prose-code:font-normal prose-code:before:content-[''] prose-code:after:content-[''] prose-pre:bg-neutral-100 prose-pre:text-black prose-pre:border prose-pre:border-neutral-200 prose-img:rounded-lg">
               <MDX
                 components={{
                   ...defaultMdxComponents,
@@ -194,7 +200,7 @@ export default async function Page({
                         href={href || "#"}
                         className={cn(
                           "no-underline hover:underline",
-                          isExternal ? "text-blue-600" : "text-black"
+                          isExternal ? "text-blue-600 decoration-blue-600" : "text-black"
                         )}
                         {...rest}
                       >
@@ -207,7 +213,7 @@ export default async function Page({
             </DocsBody>
 
             {/* Navigation */}
-            <nav className="mt-24 pt-12 border-t border-dashed border-neutral-200">
+            <nav className="mt-24 pt-12 border-t border-solid border-neutral-200">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {postsIndex[post.slugs.join("/")].previous ? (
                   <Link
