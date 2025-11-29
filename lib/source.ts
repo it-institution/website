@@ -1,5 +1,6 @@
-import { docs, meta } from "@/.source";
+import { docs, meta } from "fumadocs-mdx:collections/server";
 import { loader } from "fumadocs-core/source";
+import { toFumadocsSource } from "fumadocs-mdx/runtime/server";
 import authors from "@/content/author.json";
 
 export const blog = loader({
@@ -8,7 +9,7 @@ export const blog = loader({
   //   languages: ["ko", "en"],
   // },
   baseUrl: "/blog",
-  source: docs,
+  source: toFumadocsSource(docs, meta),
 });
 
 export type blogListType = ReturnType<typeof blog.getPages>;
