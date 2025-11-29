@@ -68,45 +68,58 @@ export default async function Page({
   );
 
   return (
-    <Container className="max-w-3xl">
+    <Container className="max-w-4xl">
+      {/* Back Link */}
       <div className="mb-12">
         <Link
           href="/blog"
-          className="text-sm text-neutral-500 hover:text-neutral-900 transition-colors mb-8 inline-block"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-neutral-600 hover:text-black transition-colors group"
         >
-          ← Back to Blog
+          <svg className="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+          </svg>
+          Back to Blog
         </Link>
-        <div className="flex flex-col gap-6">
-          <h1 className="text-4xl md:text-5xl font-bold text-neutral-900 leading-tight">
-            {post.data.title}
-          </h1>
-          <div className="flex items-center gap-4 text-neutral-500 text-sm">
-            <Link
-              href={postMetadata.author.githubUrl || "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 group"
-            >
-              <Image
-                src={postMetadata.author.avatarUrl || "/favicon.ico"}
-                alt={postMetadata.author.nickname ?? "author avatar"}
-                width={24}
-                height={24}
-                className="rounded-full border border-neutral-200"
-              />
-              <span className="group-hover:text-neutral-900 transition-colors font-medium">
-                {postMetadata.author.name || "Unknown Author"}
-              </span>
-            </Link>
-            <span>•</span>
-            <time dateTime={new Date(post.data.date).toISOString()}>
-              {formatDateLong(post.data.date)}
-            </time>
-          </div>
-        </div>
       </div>
 
-      <DocsBody className="prose prose-neutral prose-lg max-w-none prose-headings:font-bold prose-headings:text-neutral-900 prose-p:text-neutral-700 prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl">
+      {/* Article Header */}
+      <header className="mb-16 pb-12 border-b-2 border-neutral-200">
+        <h1 className="text-5xl md:text-6xl font-bold text-black leading-tight tracking-tight mb-8">
+          {post.data.title}
+        </h1>
+
+        {/* Author & Date */}
+        <div className="flex items-center gap-6">
+          <Link
+            href={postMetadata.author.githubUrl || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 group"
+          >
+            <Image
+              src={postMetadata.author.avatarUrl || "/favicon.ico"}
+              alt={postMetadata.author.nickname ?? "author avatar"}
+              width={40}
+              height={40}
+              className="rounded-full border-2 border-neutral-300 group-hover:border-black transition-colors"
+            />
+            <div className="flex flex-col">
+              <span className="font-semibold text-black group-hover:underline">
+                {postMetadata.author.name || "Unknown Author"}
+              </span>
+              <time
+                dateTime={new Date(post.data.date).toISOString()}
+                className="text-sm text-neutral-500"
+              >
+                {formatDateLong(post.data.date)}
+              </time>
+            </div>
+          </Link>
+        </div>
+      </header>
+
+      {/* Article Content */}
+      <DocsBody className="prose prose-neutral prose-xl max-w-none prose-headings:font-bold prose-headings:text-black prose-headings:tracking-tight prose-p:text-neutral-700 prose-p:leading-relaxed prose-a:text-black prose-a:font-medium prose-a:underline prose-a:decoration-2 prose-a:underline-offset-2 hover:prose-a:decoration-black prose-strong:text-black prose-strong:font-bold prose-code:text-black prose-code:bg-neutral-100 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:font-mono prose-code:text-sm prose-pre:bg-neutral-900 prose-pre:text-white prose-img:rounded-xl prose-blockquote:border-l-4 prose-blockquote:border-black prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-neutral-600">
         <MDX
           components={{
             ...defaultMdxComponents,
@@ -115,7 +128,7 @@ export default async function Page({
                 {...(props as any)}
                 src={(props.src as string) || ""}
                 alt={props.alt || "image"}
-                className="rounded-xl border border-neutral-100 shadow-sm"
+                className="rounded-xl border-2 border-neutral-200 shadow-md"
               />
             ),
             Tab,
@@ -126,7 +139,7 @@ export default async function Page({
               return (
                 <Link
                   href={href || "#"}
-                  className="text-blue-600 hover:text-blue-800 transition-colors"
+                  className="text-black font-medium underline decoration-2 underline-offset-2 hover:decoration-black transition-all"
                   {...rest}
                 >
                   {children}
@@ -137,38 +150,45 @@ export default async function Page({
         />
       </DocsBody>
 
-      <div className="mt-20 pt-10 border-t border-neutral-100">
-        <div className="flex justify-between gap-8">
+      {/* Navigation */}
+      <nav className="mt-24 pt-12 border-t-2 border-neutral-200">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {postsIndex[post.slugs.join("/")].previous ? (
             <Link
               href={`${postsIndex[post.slugs.join("/")].previous?.url}`}
-              className="flex-1 group text-left"
+              className="group bg-white border-2 border-neutral-200 rounded-lg p-6 transition-all hover:border-black hover:shadow-lg"
             >
-              <span className="block text-sm text-neutral-400 mb-1 group-hover:text-neutral-600 transition-colors">
-                Previous Post
-              </span>
-              <span className="block text-lg font-medium text-neutral-900 group-hover:text-blue-600 transition-colors line-clamp-2">
+              <div className="flex items-center gap-2 text-sm font-semibold text-neutral-500 uppercase tracking-wider mb-3">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+                </svg>
+                Previous
+              </div>
+              <h3 className="text-xl font-bold text-black group-hover:text-neutral-700 transition-colors line-clamp-2">
                 {postsIndex[post.slugs.join("/")].previous?.data.title}
-              </span>
+              </h3>
             </Link>
           ) : (
-            <div className="flex-1"></div>
+            <div></div>
           )}
           {postsIndex[post.slugs.join("/")].next && (
             <Link
               href={`${postsIndex[post.slugs.join("/")].next?.url}`}
-              className="flex-1 group text-right"
+              className="group bg-white border-2 border-neutral-200 rounded-lg p-6 transition-all hover:border-black hover:shadow-lg text-right"
             >
-              <span className="block text-sm text-neutral-400 mb-1 group-hover:text-neutral-600 transition-colors">
-                Next Post
-              </span>
-              <span className="block text-lg font-medium text-neutral-900 group-hover:text-blue-600 transition-colors line-clamp-2">
+              <div className="flex items-center justify-end gap-2 text-sm font-semibold text-neutral-500 uppercase tracking-wider mb-3">
+                Next
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-black group-hover:text-neutral-700 transition-colors line-clamp-2">
                 {postsIndex[post.slugs.join("/")].next?.data.title}
-              </span>
+              </h3>
             </Link>
           )}
         </div>
-      </div>
+      </nav>
     </Container>
   );
 }
