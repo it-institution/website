@@ -27,9 +27,9 @@ export default function RootLayout({
         <NuqsAdapter>
           <ThemeProvider
             attribute="class"
-            defaultTheme="dark"
-            disableTransitionOnChange
-            enableSystem
+            defaultTheme="light"
+            // disableTransitionOnChange
+            // enableSystem
           >
             <main className="min-h-screen">{children}</main>
             <Footer />
