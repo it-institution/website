@@ -1,103 +1,140 @@
 "use client";
 
+import { RiRssFill, RiSearchLine } from "@remixicon/react";
 import Link from "next/link";
-import { cn, formatDate, formatYear } from "@/lib/utils";
-
-import { postMetadataType } from "@/lib/source";
-
-// 간단한 Badge 컴포넌트
-function Badge({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="inline-block rounded bg-gray-200 px-2 py-0.5 text-xs font-semibold text-gray-700 dark:bg-gray-700 dark:text-gray-200">
-      {children}
-    </span>
-  );
-}
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import type { postMetadataType } from "@/lib/source";
+import { cn } from "@/lib/utils";
 
 export function BlogList({ posts }: { posts: postMetadataType[] }) {
-  // 바로 posts 사용
-  const yearList = posts.reduce(
-    (acc: Record<string, postMetadataType[]>, post) => {
-      const year = formatYear(post.date);
-      if (!acc[year]) acc[year] = [];
-      acc[year].push(post);
-      return acc;
-    },
-    {}
-  );
-
-  const itemStyles =
-    "group-hover/year:opacity-100! group-hover/post:bg-secondary/100 group-hover/list:opacity-60 rounded-md transition-colors duration-150";
-
   return (
-    <div className="group/list">
-      {posts.length === 0 ? (
-        <div className="py-12 text-center text-gray-400 flex flex-col items-center gap-2">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="mx-auto mb-2"
-            width="32"
-            height="32"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-            />
-          </svg>
-          <p>아직 게시글이 없습니다.</p>
-        </div>
-      ) : (
-        Object.keys(yearList)
-          .reverse()
-          .map((year) => (
-            <div
-              key={year}
-              className="group/year flex flex-col gap-2 border-t py-8 last-of-type:border-b sm:flex-row"
-            >
-              <div className="w-24">
-                <h2 className="group-hover/year:bg-secondary/100 w-fit rounded-md px-2 opacity-60 text-lg font-semibold">
-                  {year}
-                </h2>
-              </div>
-              <ul className="w-full space-y-3">
-                {yearList[year].map((post: postMetadataType) => (
-                  <li
-                    key={post.url}
-                    className="group/post flex justify-between items-center space-x-4"
-                  >
-                    <Link href={post.url} aria-label={post.title}>
-                      <span
-                        className={cn(
-                          itemStyles,
-                          "inline box-decoration-clone px-2 py-1 hover:bg-blue-50 dark:hover:bg-blue-900"
-                        )}
-                      >
-                        {post.title}
-                      </span>
-                    </Link>
-                    {post.draft ? (
-                      <Badge>Draft</Badge>
-                    ) : (
-                      <div
-                        className={cn(
-                          itemStyles,
-                          "h-fit text-nowrap text-xs text-gray-500 dark:text-gray-400"
-                        )}
-                      >
-                        {formatDate(post.date)}
-                      </div>
-                    )}
-                  </li>
-                ))}
-              </ul>
+    <div className="min-h-screen bg-white">
+      <div className="mx-auto max-w-7xl px-6 py-12">
+        {/* Search Bar - Top Right */}
+        <div className="mb-8 flex justify-end">
+          <div className="flex items-center gap-2">
+            <div className="relative">
+              <RiSearchLine className="-translate-y-1/2 absolute top-1/2 left-3 h-4 w-4 text-neutral-400" />
+              <input
+                className="h-8 rounded-full border border-neutral-300 bg-white pr-3 pl-9 text-neutral-900 text-sm placeholder:text-neutral-400 focus:outline-none focus:ring-1 focus:ring-neutral-400"
+                placeholder="Search posts"
+                style={{ width: "164px" }}
+                type="search"
+              />
             </div>
-          ))
-      )}
+
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button
+                    className="flex h-8 w-8 items-center justify-center rounded-full border border-neutral-300 bg-white transition-colors hover:bg-neutral-50"
+                    type="button"
+                  >
+                    <RiRssFill className="h-4 w-4 text-neutral-600" />
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>soon...</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
+        </div>
+
+        {/* Blog Grid */}
+        {posts.length === 0 ? (
+          <div className="py-32 text-center">
+            <p className="font-medium text-lg text-neutral-400">
+              아직 게시글이 없습니다.
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 overflow-hidden border border-neutral-200 md:grid-cols-2 lg:grid-cols-3">
+            {posts.map((post: postMetadataType, index: number) => {
+              const isLastColumn = index % 3 === 2;
+
+              return (
+                <div
+                  className={cn(
+                    "border-neutral-200",
+                    isLastColumn ? "" : "lg:border-r"
+                  )}
+                  key={post.url}
+                >
+                  <Link className="group block" href={post.url}>
+                    <article className="p-8">
+                      {/* Date */}
+                      <time
+                        className="mb-3 block text-neutral-500 text-sm"
+                        dateTime={new Date(post.date).toISOString()}
+                      >
+                        {new Date(post.date).toLocaleDateString("en-US", {
+                          month: "short",
+                          day: "numeric",
+                        })}
+                      </time>
+
+                      {/* Title */}
+                      <h2 className="mb-3 font-semibold text-neutral-900 text-xl leading-tight">
+                        {post.title}
+                      </h2>
+
+                      {/* Description */}
+                      {post.description ? (
+                        <p className="mb-4 line-clamp-3 text-neutral-600 text-sm leading-relaxed">
+                          {post.description}
+                        </p>
+                      ) : null}
+
+                      {/* Author */}
+                      <div className="flex items-center gap-2">
+                        <Avatar className="h-6 w-6">
+                          <AvatarImage
+                            alt={post.author.name}
+                            src={post.author.avatarUrl}
+                          />
+                          <AvatarFallback className="bg-neutral-200 text-neutral-700 text-xs">
+                            {post.author.name.charAt(0)}
+                          </AvatarFallback>
+                        </Avatar>
+                        <span className="text-neutral-500 text-sm">
+                          {post.author.name}
+                        </span>
+                      </div>
+                    </article>
+                  </Link>
+                </div>
+              );
+            })}
+
+            {/* Fill empty cells to maintain grid structure */}
+            {Array.from({ length: (3 - (posts.length % 3)) % 3 }).map(
+              (_, index) => {
+                const cellIndex = posts.length + index;
+                const isLastColumn = cellIndex % 3 === 2;
+
+                return (
+                  <div
+                    className={cn(
+                      "border-neutral-200",
+                      isLastColumn ? "" : "lg:border-r"
+                    )}
+                    key={`empty-${cellIndex}`}
+                  >
+                    <div className="min-h-[200px] p-8" />
+                  </div>
+                );
+              }
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

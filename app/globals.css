@@ -2,51 +2,54 @@
 @import "fumadocs-ui/css/neutral.css";
 @import "fumadocs-ui/css/preset.css";
 
-/* Modern, clean background: remove gradient, use solid color for both light/dark */
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: "Inter", "Pretendard", "Noto Sans KR", Arial, sans-serif;
-  background: #f7f8fa;
-}
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background: #18181b;
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89%;
+    --input: 0 0% 89%;
+    --ring: 0 0% 9%;
+    --radius: 0.5rem;
   }
 }
 
+/* Minimal black and white design */
+
+body {
+  font-family: "Inter", "Pretendard", "Noto Sans KR", Arial, sans-serif;
+  background: #ffffff;
+  color: #171717;
+}
+
 ::selection {
-  background: #2563eb;
+  background: #171717;
   color: #fff;
 }
 
 ::-webkit-scrollbar {
   width: 8px;
-  background: #f1f5f9;
-}
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #f5f5f5;
 }
 
-@media (prefers-color-scheme: dark) {
-  ::selection {
-    background: #60a5fa;
-    color: #18181b;
-  }
-  ::-webkit-scrollbar {
-    background: #23272f;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #334155;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #64748b;
-  }
+::-webkit-scrollbar-thumb {
+  background: #d4d4d4;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a3a3a3;
 }

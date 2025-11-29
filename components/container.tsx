@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 /**
@@ -25,7 +25,7 @@ export default function Container({
   return (
     <section
       className={cn(
-        "mx-auto flex flex-col gap-8 px-4 py-12",
+        "mx-auto flex flex-col gap-8 px-4 pt-32 pb-12",
         sizes[size],
         className
       )}

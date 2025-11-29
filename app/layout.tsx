@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
-
-import { ThemeProvider } from "@/components/theme-provider";
-import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import Navigation from "@/components/navigation";
+import { ThemeProvider } from "@/components/theme-provider";
 
 import "./globals.css";
 import { cn } from "@/lib/utils";
@@ -28,9 +27,10 @@ export default function RootLayout({
         <NuqsAdapter>
           <ThemeProvider
             attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
+            defaultTheme="light"
+            forcedTheme="light"
+            // disableTransitionOnChange
+            // enableSystem
           >
             <main className="min-h-screen">{children}</main>
             <Footer />

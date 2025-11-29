@@ -1,17 +1,19 @@
+import { remarkInstall } from "fumadocs-docgen";
 import {
-  defineDocs,
-  defineConfig,
   type DefaultMDXOptions,
+  defineConfig,
+  defineDocs,
   frontmatterSchema,
 } from "fumadocs-mdx/config";
 import { z } from "zod";
-
-import { remarkInstall } from "fumadocs-docgen";
 
 export const { docs, meta } = defineDocs({
   dir: "content/blog",
   docs: {
     schema: frontmatterSchema.extend({
+      description: z
+        .string()
+        .describe("A brief description of the post for SEO and previews"),
       draft: z.boolean().optional().default(false),
       author: z.string().describe("Author of the post, github username"),
       date: z
@@ -38,7 +40,6 @@ const mdxOptions: DefaultMDXOptions = {
 };
 
 export default defineConfig({
-  lastModifiedTime: "git",
-  mdxOptions: mdxOptions,
+  mdxOptions,
   // generateManifest: false,
 });
