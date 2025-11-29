@@ -18,6 +18,7 @@ export type blogType = ReturnType<typeof blog.getPage>;
 export type postMetadataType = {
   url: string;
   title: string;
+  description?: string;
   draft: boolean;
   date: Date;
   author: authorType;
@@ -34,6 +35,7 @@ export function getPostMetadata(post: blogType): postMetadataType {
   const emptyData = {
     url: "",
     title: "",
+    description: "",
     draft: false,
     date: new Date(),
     author: {
@@ -67,6 +69,7 @@ export function getPostMetadata(post: blogType): postMetadataType {
   return {
     url: post.url,
     title: post.data.title,
+    description: post.data.description,
     draft: post.data.draft,
     date: post.data.date,
     author: author,

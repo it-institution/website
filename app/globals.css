@@ -7,48 +7,24 @@
 body {
   font-family: "Inter", "Pretendard", "Noto Sans KR", Arial, sans-serif;
   background: #ffffff;
-}
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background: #000000;
-  }
+  color: #171717;
 }
 
 ::selection {
-  background: #000000;
+  background: #171717;
   color: #fff;
 }
 
 ::-webkit-scrollbar {
   width: 8px;
-  background: #e5e5e5;
+  background: #f5f5f5;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #737373;
+  background: #d4d4d4;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #525252;
-}
-
-@media (prefers-color-scheme: dark) {
-  ::selection {
-    background: #ffffff;
-    color: #000000;
-  }
-
-  ::-webkit-scrollbar {
-    background: #1a1a1a;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: #404040;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: #525252;
-  }
+  background: #a3a3a3;
 }
