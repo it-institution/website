@@ -68,7 +68,7 @@ export default async function Page({
   );
 
   return (
-    <Container className="py-12 max-w-3xl">
+    <Container className="max-w-3xl">
       <div className="mb-12">
         <Link
           href="/blog"

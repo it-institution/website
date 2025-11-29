@@ -38,8 +38,8 @@ export default function Navigation() {
   }, [isMobile]);
 
   return (
-    <nav className="w-full bg-white dark:bg-black border-b border-gray-200 dark:border-gray-800 sticky top-0 z-50">
-      <div className="max-w-5xl mx-auto flex items-center justify-between gap-6 px-4 py-3">
+    <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 bg-white dark:bg-white/90 backdrop-blur-md border border-black/5 rounded-full shadow-sm transition-all duration-300">
+      <div className="flex items-center justify-between gap-6 px-6 py-2">
         <Link href="/">
           <Image
             src={logoImg}
@@ -56,42 +56,46 @@ export default function Navigation() {
           aria-label="Toggle menu"
         >
           <span
-            className={`bg-gray-700 dark:bg-gray-200 block h-0.5 w-6 rounded ${isMenuOpen ? "rotate-45 translate-y-1.5" : ""
+            className={`bg-gray-700 block h-0.5 w-6 rounded ${isMenuOpen ? "rotate-45 translate-y-1.5" : ""
               }`}
           ></span>
           <span
-            className={`bg-gray-700 dark:bg-gray-200 block h-0.5 w-6 rounded my-1 ${isMenuOpen ? "opacity-0" : ""
+            className={`bg-gray-700 block h-0.5 w-6 rounded my-1 ${isMenuOpen ? "opacity-0" : ""
               }`}
           ></span>
           <span
-            className={`bg-gray-700 dark:bg-gray-200 block h-0.5 w-6 rounded ${isMenuOpen ? "-rotate-45 -translate-y-1.5" : ""
+            className={`bg-gray-700 block h-0.5 w-6 rounded ${isMenuOpen ? "-rotate-45 -translate-y-1.5" : ""
               }`}
           ></span>
         </button>
 
         {/* Desktop navigation */}
         <div className="hidden md:flex gap-4 ml-8">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-gray-700 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-300 font-medium px-2 py-1 rounded"
-            >
-              {item.label}
-            </Link>
+          {navItems.map((item, index) => (
+            <div key={item.href} className="flex items-center">
+              {index === navItems.length - 1 && (
+                <span className="mx-2 text-gray-300">|</span>
+              )}
+              <Link
+                href={item.href}
+                className="text-gray-700 hover:text-gray-900 font-medium px-2 py-1 rounded transition-colors"
+              >
+                {item.label}
+              </Link>
+            </div>
           ))}
         </div>
       </div>
 
       {/* Mobile navigation drawer */}
       {isMenuOpen && (
-        <div className="md:hidden w-full bg-white dark:bg-black border-b border-gray-200 dark:border-gray-800">
+        <div className="absolute top-full left-0 mt-2 w-full min-w-[200px] bg-white rounded-2xl border border-black/5 shadow-lg overflow-hidden">
           <div className="flex flex-col px-4 py-3">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-gray-700 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-300 font-medium px-2 py-3 border-b border-gray-100 dark:border-gray-800 last:border-0"
+                className="text-gray-700 hover:text-gray-900 font-medium px-2 py-3 border-b border-gray-100 last:border-0"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.label}
