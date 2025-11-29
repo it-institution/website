@@ -93,13 +93,20 @@ export default function Home() {
                 description:
                   "습득한 IT 지식과 기술을 윤리적으로 사용하며, 법적, 윤리적 테두리를 준수합니다.",
               },
-            ].map((principle, index) => (
+            ].map((principle) => (
               <div
                 className="group rounded-2xl border border-neutral-100 bg-white p-8 transition-all duration-300 hover:border-neutral-200 hover:shadow-lg hover:shadow-neutral-100/50"
-                key={index}
+                key={principle.title}
               >
                 <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-full bg-neutral-100 font-bold text-neutral-900 text-sm">
-                  {index + 1}
+                  {[
+                    "실사구시",
+                    "전문성 심화",
+                    "지식 공유",
+                    "지속 성장",
+                    "존중과 배려",
+                    "윤리적 실천",
+                  ].indexOf(principle.title) + 1}
                 </div>
                 <h3 className="mb-3 font-bold text-neutral-900 text-xl">
                   {principle.title}
@@ -167,13 +174,23 @@ export default function Home() {
                   "대규모 시스템 운영을 위한 SRE 원칙 및 사례 연구",
                 ],
               },
-            ].map((track, index) => (
+            ].map((track) => (
               <div
                 className="flex flex-col items-center gap-12 lg:flex-row"
-                key={index}
+                key={track.title}
               >
                 <div
-                  className={`w-full lg:w-1/2 ${index % 2 === 1 ? "lg:order-2" : ""}`}
+                  className={`w-full lg:w-1/2 ${
+                    [
+                      "사이버 보안 및 윤리적 해킹",
+                      "소프트웨어 개발 및 아키텍처",
+                      "인프라 및 클라우드 네이티브",
+                    ].indexOf(track.title) %
+                      2 ===
+                    1
+                      ? "lg:order-2"
+                      : ""
+                  }`}
                 >
                   <div className="overflow-hidden rounded-2xl shadow-neutral-200/50 shadow-xl">
                     <Image
@@ -186,7 +203,17 @@ export default function Home() {
                   </div>
                 </div>
                 <div
-                  className={`w-full lg:w-1/2 ${index % 2 === 1 ? "lg:order-1" : ""}`}
+                  className={`w-full lg:w-1/2 ${
+                    [
+                      "사이버 보안 및 윤리적 해킹",
+                      "소프트웨어 개발 및 아키텍처",
+                      "인프라 및 클라우드 네이티브",
+                    ].indexOf(track.title) %
+                      2 ===
+                    1
+                      ? "lg:order-1"
+                      : ""
+                  }`}
                 >
                   <h3 className="mb-4 font-bold text-2xl text-neutral-900">
                     {track.title}
@@ -195,8 +222,8 @@ export default function Home() {
                     {track.description}
                   </p>
                   <div className="space-y-3">
-                    {track.activities.map((activity, i) => (
-                      <div className="flex items-start gap-3" key={i}>
+                    {track.activities.map((activity) => (
+                      <div className="flex items-start gap-3" key={activity}>
                         <div className="mt-2.5 h-1.5 min-w-1.5 rounded-full bg-neutral-300" />
                         <p className="text-neutral-600 text-sm">{activity}</p>
                       </div>
@@ -243,10 +270,10 @@ export default function Home() {
                 description:
                   "Slack/Discord 등 커뮤니케이션 채널, Notion/Wiki 등 문서 관리. 스터디 자료, 프로젝트 산출물 등을 체계적으로 기록하여 지식 자산화.",
               },
-            ].map((method, index) => (
+            ].map((method) => (
               <div
                 className="rounded-2xl border border-neutral-100 bg-neutral-50 p-10"
-                key={index}
+                key={method.title}
               >
                 <h3 className="mb-4 font-bold text-neutral-900 text-xl">
                   {method.title}

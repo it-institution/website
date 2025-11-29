@@ -49,6 +49,7 @@ export default function Navigation() {
           aria-label="Toggle menu"
           className="flex h-8 w-8 flex-col items-center justify-center md:hidden"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
+          type="button"
         >
           <span
             className={`block h-0.5 w-6 rounded bg-gray-700 ${
@@ -71,9 +72,9 @@ export default function Navigation() {
         <div className="ml-8 hidden gap-4 md:flex">
           {navItems.map((item, index) => (
             <div className="flex items-center" key={item.href}>
-              {index === navItems.length - 1 && (
+              {index === navItems.length - 1 ? (
                 <span className="mx-2 text-gray-300">|</span>
-              )}
+              ) : null}
               <Link
                 className="rounded px-2 py-1 font-medium text-gray-700 transition-colors hover:text-gray-900"
                 href={item.href}
@@ -86,7 +87,7 @@ export default function Navigation() {
       </div>
 
       {/* Mobile navigation drawer */}
-      {isMenuOpen && (
+      {isMenuOpen ? (
         <div className="absolute top-full left-0 mt-2 w-full min-w-[200px] overflow-hidden rounded-2xl border border-black/5 bg-white shadow-lg">
           <div className="flex flex-col px-4 py-3">
             {navItems.map((item) => (
@@ -101,7 +102,7 @@ export default function Navigation() {
             ))}
           </div>
         </div>
-      )}
+      ) : null}
     </nav>
   );
 }

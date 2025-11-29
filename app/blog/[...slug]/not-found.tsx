@@ -2,9 +2,11 @@ export default function NotFound() {
   return (
     <section className="flex min-h-[60vh] flex-col items-center justify-center gap-4 text-center">
       <svg
+        aria-label="404 Not Found"
         className="mx-auto text-gray-400 dark:text-gray-600"
         fill="none"
         height="48"
+        role="img"
         stroke="currentColor"
         viewBox="0 0 24 24"
         width="48"

@@ -32,7 +32,10 @@ export function BlogList({ posts }: { posts: postMetadataType[] }) {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <button className="flex h-8 w-8 items-center justify-center rounded-full border border-neutral-300 bg-white transition-colors hover:bg-neutral-50">
+                  <button
+                    className="flex h-8 w-8 items-center justify-center rounded-full border border-neutral-300 bg-white transition-colors hover:bg-neutral-50"
+                    type="button"
+                  >
                     <RiRssFill className="h-4 w-4 text-neutral-600" />
                   </button>
                 </TooltipTrigger>
@@ -60,7 +63,7 @@ export function BlogList({ posts }: { posts: postMetadataType[] }) {
                 <div
                   className={cn(
                     "border-neutral-200",
-                    !isLastColumn && "lg:border-r"
+                    isLastColumn ? "" : "lg:border-r"
                   )}
                   key={post.url}
                 >
@@ -83,11 +86,11 @@ export function BlogList({ posts }: { posts: postMetadataType[] }) {
                       </h2>
 
                       {/* Description */}
-                      {post.description && (
+                      {post.description ? (
                         <p className="mb-4 line-clamp-3 text-neutral-600 text-sm leading-relaxed">
                           {post.description}
                         </p>
-                      )}
+                      ) : null}
 
                       {/* Author */}
                       <div className="flex items-center gap-2">
@@ -120,9 +123,9 @@ export function BlogList({ posts }: { posts: postMetadataType[] }) {
                   <div
                     className={cn(
                       "border-neutral-200",
-                      !isLastColumn && "lg:border-r"
+                      isLastColumn ? "" : "lg:border-r"
                     )}
-                    key={`empty-${index}`}
+                    key={`empty-${cellIndex}`}
                   >
                     <div className="min-h-[200px] p-8" />
                   </div>

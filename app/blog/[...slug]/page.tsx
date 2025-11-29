@@ -59,9 +59,9 @@ export default async function Page({
   };
 
   const postsIndex = posts.reduce<Record<string, PostWithNavigation>>(
-    (acc, post, index) => {
-      acc[post.slugs.join("/")] = {
-        ...post,
+    (acc, blogPost, index) => {
+      acc[blogPost.slugs.join("/")] = {
+        ...blogPost,
         previous: posts[index - 1] || null,
         next: posts[index + 1] || null,
       };
@@ -97,8 +97,10 @@ export default async function Page({
                 href="/blog"
               >
                 <svg
+                  aria-label="Back to blog"
                   fill="none"
                   height="16"
+                  role="img"
                   viewBox="0 0 16 16"
                   width="16"
                   xmlns="http://www.w3.org/2000/svg"
@@ -154,8 +156,10 @@ export default async function Page({
                   {/* Read Time */}
                   <div className="flex items-center gap-2">
                     <svg
+                      aria-label="Read time"
                       fill="none"
                       height="16"
+                      role="img"
                       stroke="currentColor"
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -170,10 +174,15 @@ export default async function Page({
                   </div>
 
                   {/* Copy URL */}
-                  <button className="flex cursor-pointer items-center gap-2 text-blue-600 hover:underline">
+                  <button
+                    className="flex cursor-pointer items-center gap-2 text-blue-600 hover:underline"
+                    type="button"
+                  >
                     <svg
+                      aria-label="Copy URL"
                       fill="none"
                       height="16"
+                      role="img"
                       stroke="currentColor"
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -202,7 +211,7 @@ export default async function Page({
                   ...defaultMdxComponents,
                   img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
                     <Image
-                      {...(props as any)}
+                      {...(props as React.ComponentProps<typeof Image>)}
                       alt={props.alt || "image"}
                       className="rounded-lg border border-neutral-200"
                       src={(props.src as string) || ""}
@@ -252,7 +261,7 @@ export default async function Page({
                   <div />
                 )}
 
-                {postsIndex[post.slugs.join("/")].next && (
+                {postsIndex[post.slugs.join("/")].next ? (
                   <Link
                     className="group block text-right"
                     href={`${postsIndex[post.slugs.join("/")].next?.url}`}
@@ -264,7 +273,7 @@ export default async function Page({
                       {postsIndex[post.slugs.join("/")].next?.data.title}
                     </div>
                   </Link>
-                )}
+                ) : null}
               </div>
             </nav>
           </div>

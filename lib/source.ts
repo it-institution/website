@@ -21,7 +21,9 @@ export type BlogPost = NonNullable<blogType> & {
     date: Date;
     draft: boolean;
     author: string;
-    body: React.FC<{ components?: Record<string, React.ComponentType<any>> }>;
+    body: React.FC<{
+      components?: Record<string, React.ComponentType<unknown>>;
+    }>;
   };
 };
 
