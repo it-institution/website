@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 
 const navItems = [
   { href: "/blog", label: "블로그" },
+  { href: "http://discord.inst.it.kr/", label: "가입하기" },
 ];
 
 export default function Navigation() {

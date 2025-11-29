@@ -274,10 +274,10 @@ export default function Home() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
-              href="/blog"
+              href="http://discord.inst.it.kr/"
               className="bg-neutral-900 text-white px-10 py-4 rounded-full font-medium hover:bg-neutral-800 transition-colors"
             >
-              블로그 구경하기
+              가입하기
             </Link>
           </div>
         </div>
