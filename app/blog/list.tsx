@@ -53,7 +53,7 @@ export function BlogList({ posts }: { posts: postMetadataType[] }) {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border border-neutral-200 rounded-lg overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border border-neutral-200 overflow-hidden">
             {posts.map((post: postMetadataType, index: number) => {
               const isLastColumn = (index % 3) === 2;
 
