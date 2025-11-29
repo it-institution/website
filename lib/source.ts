@@ -1,5 +1,4 @@
 import { docs, meta } from "@/.source";
-import { createMDXSource } from "fumadocs-mdx";
 import { loader } from "fumadocs-core/source";
 import authors from "@/content/author.json";
 
@@ -9,11 +8,21 @@ export const blog = loader({
   //   languages: ["ko", "en"],
   // },
   baseUrl: "/blog",
-  source: createMDXSource(docs, meta),
+  source: docs,
 });
 
 export type blogListType = ReturnType<typeof blog.getPages>;
 export type blogType = ReturnType<typeof blog.getPage>;
+
+// Custom type for blog posts with extended schema
+export type BlogPost = NonNullable<blogType> & {
+  data: {
+    date: Date;
+    draft: boolean;
+    author: string;
+    body: React.FC<{ components?: Record<string, React.ComponentType<any>> }>;
+  };
+};
 
 export type postMetadataType = {
   url: string;
@@ -31,7 +40,7 @@ export type authorType = {
   avatarUrl: string;
 };
 
-export function getPostMetadata(post: blogType): postMetadataType {
+export function getPostMetadata(post: BlogPost | undefined): postMetadataType {
   const emptyData = {
     url: "",
     title: "",
@@ -68,15 +77,15 @@ export function getPostMetadata(post: blogType): postMetadataType {
 
   return {
     url: post.url,
-    title: post.data.title,
-    description: post.data.description,
+    title: post.data.title ?? "",
+    description: post.data.description ?? "",
     draft: post.data.draft,
     date: post.data.date,
     author: author,
   };
 }
 
-export function getPostsMetadata(posts: blogListType): postMetadataType[] {
+export function getPostsMetadata(posts: BlogPost[]): postMetadataType[] {
   return posts
     .sort((a, b) => {
       return b.data.date.getTime() - a.data.date.getTime();

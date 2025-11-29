@@ -37,8 +37,8 @@ export default async function Page({
 }) {
   const { slug } = await params;
 
-  const post = blog.getPage(slug);
-  const posts = blog.getPages();
+  const post = blog.getPage(slug) as import("@/lib/source").BlogPost | undefined;
+  const posts = blog.getPages() as Array<import("@/lib/source").BlogPost>;
 
   posts.sort(
     (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
@@ -110,9 +110,10 @@ export default async function Page({
         <MDX
           components={{
             ...defaultMdxComponents,
-            img: (props) => (
+            img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
               <Image
-                {...props}
+                {...(props as any)}
+                src={(props.src as string) || ""}
                 alt={props.alt || "image"}
                 className="rounded-xl border border-neutral-100 shadow-sm"
               />
@@ -120,11 +121,11 @@ export default async function Page({
             Tab,
             Tabs,
             Callout,
-            a: (props) => {
+            a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
               const { href, children, ...rest } = props;
               return (
                 <Link
-                  href={href}
+                  href={href || "#"}
                   className="text-blue-600 hover:text-blue-800 transition-colors"
                   {...rest}
                 >
