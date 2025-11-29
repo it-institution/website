@@ -110,6 +110,24 @@ export function BlogList({ posts }: { posts: postMetadataType[] }) {
                 </div>
               );
             })}
+
+            {/* Fill empty cells to maintain grid structure */}
+            {Array.from({ length: (3 - (posts.length % 3)) % 3 }).map((_, index) => {
+              const cellIndex = posts.length + index;
+              const isLastColumn = (cellIndex % 3) === 2;
+
+              return (
+                <div
+                  key={`empty-${index}`}
+                  className={cn(
+                    "border-neutral-200",
+                    !isLastColumn && "lg:border-r"
+                  )}
+                >
+                  <div className="p-8 min-h-[200px]"></div>
+                </div>
+              );
+            })}
           </div>
         )}
       </div>
