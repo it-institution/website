@@ -1,5 +1,6 @@
 ---
 title: "유용한 CISCO CONFIG 모음"
+description: "CISCO IOS 단축키, VLAN 설정, NX-OS 명령어, QoS 등 네트워크 장비 설정에 유용한 명령어 모음입니다."
 date: 2025-05-17T00:00:00.000Z
 tags: ["test"]
 author: "IdiotonC"

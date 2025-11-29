@@ -12,6 +12,9 @@ export const { docs, meta } = defineDocs({
   dir: "content/blog",
   docs: {
     schema: frontmatterSchema.extend({
+      description: z
+        .string()
+        .describe("A brief description of the post for SEO and previews"),
       draft: z.boolean().optional().default(false),
       author: z.string().describe("Author of the post, github username"),
       date: z
