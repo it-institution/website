@@ -82,16 +82,12 @@ export function getPostMetadata(post: BlogPost | undefined): postMetadataType {
     description: post.data.description ?? "",
     draft: post.data.draft,
     date: post.data.date,
-    author: author,
+    author,
   };
 }
 
 export function getPostsMetadata(posts: BlogPost[]): postMetadataType[] {
   return posts
-    .sort((a, b) => {
-      return b.data.date.getTime() - a.data.date.getTime();
-    })
-    .map((post) => {
-      return getPostMetadata(post);
-    });
+    .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+    .map((post) => getPostMetadata(post));
 }

@@ -1,12 +1,11 @@
+import { remarkInstall } from "fumadocs-docgen";
 import {
-  defineDocs,
-  defineConfig,
   type DefaultMDXOptions,
+  defineConfig,
+  defineDocs,
   frontmatterSchema,
 } from "fumadocs-mdx/config";
 import { z } from "zod";
-
-import { remarkInstall } from "fumadocs-docgen";
 
 export const { docs, meta } = defineDocs({
   dir: "content/blog",
@@ -41,6 +40,6 @@ const mdxOptions: DefaultMDXOptions = {
 };
 
 export default defineConfig({
-  mdxOptions: mdxOptions,
+  mdxOptions,
   // generateManifest: false,
 });

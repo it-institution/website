@@ -1,47 +1,46 @@
-import Container from "@/components/container";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-white text-neutral-900 py-32">
-        <div className="max-w-5xl mx-auto px-4 relative z-10">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-16">
-            <div className="text-center md:text-left space-y-8 md:max-w-xl">
-              <div className="inline-block px-4 py-1.5 rounded-full bg-neutral-100 text-neutral-800 text-sm font-medium mb-4 border border-neutral-200">
+      <section className="relative bg-white py-32 text-neutral-900">
+        <div className="relative z-10 mx-auto max-w-5xl px-4">
+          <div className="flex flex-col items-center justify-between gap-16 md:flex-row">
+            <div className="space-y-8 text-center md:max-w-xl md:text-left">
+              <div className="mb-4 inline-block rounded-full border border-neutral-200 bg-neutral-100 px-4 py-1.5 font-medium text-neutral-800 text-sm">
                 IT 특성화고 전문가 모임
               </div>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-neutral-900 leading-[1.1]">
+              <h1 className="font-bold text-5xl text-neutral-900 leading-[1.1] tracking-tight md:text-6xl lg:text-7xl">
                 IT 학회
                 <br />
-                <span className="text-neutral-500 font-medium text-4xl md:text-5xl lg:text-6xl">
+                <span className="font-medium text-4xl text-neutral-500 md:text-5xl lg:text-6xl">
                   전문가들의 모임
                 </span>
               </h1>
-              <p className="text-xl text-neutral-600 leading-relaxed">
+              <p className="text-neutral-600 text-xl leading-relaxed">
                 IT 특성화고에서의 기초를 다지고 현업의 전문가로 성장한 우리들의
                 기술 교류와 네트워킹 커뮤니티
               </p>
-              <div className="flex flex-wrap justify-center md:justify-start gap-4 pt-4">
+              <div className="flex flex-wrap justify-center gap-4 pt-4 md:justify-start">
                 <Link
+                  className="rounded-full bg-neutral-900 px-8 py-4 font-medium text-white transition-colors hover:bg-neutral-800"
                   href="/blog"
-                  className="bg-neutral-900 text-white px-8 py-4 rounded-full font-medium hover:bg-neutral-800 transition-colors"
                 >
                   블로그 보기
                 </Link>
               </div>
             </div>
-            <div className="relative w-full max-w-md aspect-square">
-              <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl shadow-neutral-200/50">
-                <div className="w-full h-full bg-neutral-50 flex items-center justify-center">
+            <div className="relative aspect-square w-full max-w-md">
+              <div className="relative h-full w-full overflow-hidden rounded-2xl shadow-2xl shadow-neutral-200/50">
+                <div className="flex h-full w-full items-center justify-center bg-neutral-50">
                   <Image
-                    src="https://placehold.co/800x800/f5f5f5/171717/png?text=IT+Society"
                     alt="IT 학회"
-                    width={800}
+                    className="h-full w-full object-cover grayscale transition-all duration-500 hover:grayscale-0"
                     height={800}
-                    className="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-500"
+                    src="https://placehold.co/800x800/f5f5f5/171717/png?text=IT+Society"
+                    width={800}
                   />
                 </div>
               </div>
@@ -51,19 +50,19 @@ export default function Home() {
       </section>
 
       {/* Core Principles */}
-      <section className="py-24 bg-white">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="flex flex-col items-center text-center mb-20">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-neutral-900">
+      <section className="bg-white py-24">
+        <div className="mx-auto max-w-5xl px-4">
+          <div className="mb-20 flex flex-col items-center text-center">
+            <h2 className="mb-6 font-bold text-3xl text-neutral-900 md:text-4xl">
               학회의 핵심 원칙
             </h2>
-            <p className="text-lg text-neutral-600 max-w-2xl">
+            <p className="max-w-2xl text-lg text-neutral-600">
               IT 학회는 단순한 친목 모임을 넘어, 실질적인 기술 역량 강화와 의미
               있는 성과 창출을 추구합니다.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {[
               {
                 title: "실사구시",
@@ -96,16 +95,16 @@ export default function Home() {
               },
             ].map((principle, index) => (
               <div
+                className="group rounded-2xl border border-neutral-100 bg-white p-8 transition-all duration-300 hover:border-neutral-200 hover:shadow-lg hover:shadow-neutral-100/50"
                 key={index}
-                className="group p-8 rounded-2xl bg-white border border-neutral-100 hover:border-neutral-200 hover:shadow-lg hover:shadow-neutral-100/50 transition-all duration-300"
               >
-                <div className="w-10 h-10 rounded-full bg-neutral-100 flex items-center justify-center mb-6 text-neutral-900 font-bold text-sm">
+                <div className="mb-6 flex h-10 w-10 items-center justify-center rounded-full bg-neutral-100 font-bold text-neutral-900 text-sm">
                   {index + 1}
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-neutral-900">
+                <h3 className="mb-3 font-bold text-neutral-900 text-xl">
                   {principle.title}
                 </h3>
-                <p className="text-neutral-600 leading-relaxed text-sm">
+                <p className="text-neutral-600 text-sm leading-relaxed">
                   {principle.description}
                 </p>
               </div>
@@ -115,13 +114,13 @@ export default function Home() {
       </section>
 
       {/* Activity Tracks */}
-      <section className="py-24 bg-neutral-50">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="flex flex-col items-center text-center mb-20">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-neutral-900">
+      <section className="bg-neutral-50 py-24">
+        <div className="mx-auto max-w-5xl px-4">
+          <div className="mb-20 flex flex-col items-center text-center">
+            <h2 className="mb-6 font-bold text-3xl text-neutral-900 md:text-4xl">
               주요 활동 트랙
             </h2>
-            <p className="text-lg text-neutral-600 max-w-2xl">
+            <p className="max-w-2xl text-lg text-neutral-600">
               회원들의 관심사와 전문성을 고려하여 다음 트랙들을 중심으로 활동을
               전개합니다.
             </p>
@@ -170,35 +169,35 @@ export default function Home() {
               },
             ].map((track, index) => (
               <div
+                className="flex flex-col items-center gap-12 lg:flex-row"
                 key={index}
-                className="flex flex-col lg:flex-row gap-12 items-center"
               >
                 <div
                   className={`w-full lg:w-1/2 ${index % 2 === 1 ? "lg:order-2" : ""}`}
                 >
-                  <div className="rounded-2xl overflow-hidden shadow-xl shadow-neutral-200/50">
+                  <div className="overflow-hidden rounded-2xl shadow-neutral-200/50 shadow-xl">
                     <Image
-                      src={track.image}
                       alt={track.title}
-                      width={800}
+                      className="h-full w-full object-cover grayscale transition-all duration-500 hover:grayscale-0"
                       height={450}
-                      className="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-500"
+                      src={track.image}
+                      width={800}
                     />
                   </div>
                 </div>
                 <div
                   className={`w-full lg:w-1/2 ${index % 2 === 1 ? "lg:order-1" : ""}`}
                 >
-                  <h3 className="text-2xl font-bold mb-4 text-neutral-900">
+                  <h3 className="mb-4 font-bold text-2xl text-neutral-900">
                     {track.title}
                   </h3>
-                  <p className="text-neutral-600 mb-8 leading-relaxed">
+                  <p className="mb-8 text-neutral-600 leading-relaxed">
                     {track.description}
                   </p>
                   <div className="space-y-3">
                     {track.activities.map((activity, i) => (
-                      <div key={i} className="flex items-start gap-3">
-                        <div className="min-w-1.5 h-1.5 rounded-full bg-neutral-300 mt-2.5"></div>
+                      <div className="flex items-start gap-3" key={i}>
+                        <div className="mt-2.5 h-1.5 min-w-1.5 rounded-full bg-neutral-300" />
                         <p className="text-neutral-600 text-sm">{activity}</p>
                       </div>
                     ))}
@@ -211,18 +210,18 @@ export default function Home() {
       </section>
 
       {/* Activity Methods */}
-      <section className="py-24 bg-white">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="flex flex-col items-center text-center mb-20">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-neutral-900">
+      <section className="bg-white py-24">
+        <div className="mx-auto max-w-5xl px-4">
+          <div className="mb-20 flex flex-col items-center text-center">
+            <h2 className="mb-6 font-bold text-3xl text-neutral-900 md:text-4xl">
               활동 방식
             </h2>
-            <p className="text-lg text-neutral-600 max-w-2xl">
+            <p className="max-w-2xl text-lg text-neutral-600">
               다양한 방식으로 지속적인 학습과 교류를 이어갑니다
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             {[
               {
                 title: "스터디 및 세미나",
@@ -246,10 +245,10 @@ export default function Home() {
               },
             ].map((method, index) => (
               <div
+                className="rounded-2xl border border-neutral-100 bg-neutral-50 p-10"
                 key={index}
-                className="bg-neutral-50 p-10 rounded-2xl border border-neutral-100"
               >
-                <h3 className="text-xl font-bold mb-4 text-neutral-900">
+                <h3 className="mb-4 font-bold text-neutral-900 text-xl">
                   {method.title}
                 </h3>
                 <p className="text-neutral-600 leading-relaxed">
@@ -262,20 +261,20 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 bg-white border-t border-neutral-100">
-        <div className="max-w-3xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-neutral-900">
+      <section className="border-neutral-100 border-t bg-white py-32">
+        <div className="mx-auto max-w-3xl px-4 text-center">
+          <h2 className="mb-8 font-bold text-3xl text-neutral-900 md:text-4xl">
             IT 전문가로서 함께 성장해요
           </h2>
-          <p className="text-xl text-neutral-600 mb-12 leading-relaxed">
+          <p className="mb-12 text-neutral-600 text-xl leading-relaxed">
             특성화고 시절의 열정을 이어받아, 현업에서의 전문성을 한층 더
             끌어올리고, 서로에게 든든한 기술적 동반자가 되어주는 공간에
             함께하세요.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
+              className="rounded-full bg-neutral-900 px-10 py-4 font-medium text-white transition-colors hover:bg-neutral-800"
               href="http://discord.inst.it.kr/"
-              className="bg-neutral-900 text-white px-10 py-4 rounded-full font-medium hover:bg-neutral-800 transition-colors"
             >
               가입하기
             </Link>

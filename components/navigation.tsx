@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
-import logoImg from "@/assets/rt.png";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import logoImg from "@/assets/rt.png";
 
 const navItems = [
   { href: "/blog", label: "블로그" },
@@ -38,47 +38,45 @@ export default function Navigation() {
   }, [isMobile]);
 
   return (
-    <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 bg-white dark:bg-white/90 backdrop-blur-md border border-black/5 rounded-full shadow-sm transition-all duration-300">
+    <nav className="-translate-x-1/2 fixed top-6 left-1/2 z-50 rounded-full border border-black/5 bg-white shadow-sm backdrop-blur-md transition-all duration-300 dark:bg-white/90">
       <div className="flex items-center justify-between gap-6 px-6 py-2">
         <Link href="/">
-          <Image
-            src={logoImg}
-            alt="Logo"
-            width={30}
-            height={30}
-          />
+          <Image alt="Logo" height={30} src={logoImg} width={30} />
         </Link>
 
         {/* Mobile hamburger menu */}
         <button
-          className="md:hidden flex flex-col justify-center items-center w-8 h-8"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
+          className="flex h-8 w-8 flex-col items-center justify-center md:hidden"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           <span
-            className={`bg-gray-700 block h-0.5 w-6 rounded ${isMenuOpen ? "rotate-45 translate-y-1.5" : ""
-              }`}
-          ></span>
+            className={`block h-0.5 w-6 rounded bg-gray-700 ${
+              isMenuOpen ? "translate-y-1.5 rotate-45" : ""
+            }`}
+          />
           <span
-            className={`bg-gray-700 block h-0.5 w-6 rounded my-1 ${isMenuOpen ? "opacity-0" : ""
-              }`}
-          ></span>
+            className={`my-1 block h-0.5 w-6 rounded bg-gray-700 ${
+              isMenuOpen ? "opacity-0" : ""
+            }`}
+          />
           <span
-            className={`bg-gray-700 block h-0.5 w-6 rounded ${isMenuOpen ? "-rotate-45 -translate-y-1.5" : ""
-              }`}
-          ></span>
+            className={`block h-0.5 w-6 rounded bg-gray-700 ${
+              isMenuOpen ? "-rotate-45 -translate-y-1.5" : ""
+            }`}
+          />
         </button>
 
         {/* Desktop navigation */}
-        <div className="hidden md:flex gap-4 ml-8">
+        <div className="ml-8 hidden gap-4 md:flex">
           {navItems.map((item, index) => (
-            <div key={item.href} className="flex items-center">
+            <div className="flex items-center" key={item.href}>
               {index === navItems.length - 1 && (
                 <span className="mx-2 text-gray-300">|</span>
               )}
               <Link
+                className="rounded px-2 py-1 font-medium text-gray-700 transition-colors hover:text-gray-900"
                 href={item.href}
-                className="text-gray-700 hover:text-gray-900 font-medium px-2 py-1 rounded transition-colors"
               >
                 {item.label}
               </Link>
@@ -89,13 +87,13 @@ export default function Navigation() {
 
       {/* Mobile navigation drawer */}
       {isMenuOpen && (
-        <div className="absolute top-full left-0 mt-2 w-full min-w-[200px] bg-white rounded-2xl border border-black/5 shadow-lg overflow-hidden">
+        <div className="absolute top-full left-0 mt-2 w-full min-w-[200px] overflow-hidden rounded-2xl border border-black/5 bg-white shadow-lg">
           <div className="flex flex-col px-4 py-3">
             {navItems.map((item) => (
               <Link
-                key={item.href}
+                className="border-gray-100 border-b px-2 py-3 font-medium text-gray-700 last:border-0 hover:text-gray-900"
                 href={item.href}
-                className="text-gray-700 hover:text-gray-900 font-medium px-2 py-3 border-b border-gray-100 last:border-0"
+                key={item.href}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.label}
