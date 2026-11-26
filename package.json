@@ -16,7 +16,7 @@
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.11",
     "@radix-ui/react-tooltip": "^1.2.8",
-    "@remixicon/react": "^4.7.0",
+    "@remixicon/react": "^4.9.0",
     "@tailwindcss/postcss": "^4.1.17",
     "clsx": "^2.1.1",
     "fumadocs-core": "16.2.0",
